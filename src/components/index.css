@@ -1,0 +1,15 @@
+:root {
+  --primary1: #FFF9F4;
+  --secondary1: #FDB53F;
+  --accent1: #283C65;
+  --accent2: #14213D;
+}
+
+* {
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+}
+
+body {
+  background-color: var(--primary1);
+}
