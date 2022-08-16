@@ -8,7 +8,8 @@ class App extends Component {
     return (
       <div>
         <Navbar/>
-        <Input width="263px" paddingLeft="36px" type="search" placeholderText="Search" />
+        <Input width="263px" paddingLeft="36px" boxType="search" placeholderText="Search" />
+        <Input width="323px" paddingLeft="10px" boxType="credit-card" placeholderText="Card Number" />
       </div>
     );
   }
