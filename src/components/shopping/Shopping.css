@@ -1,0 +1,13 @@
+.shopping-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.shopping-heading h3{
+  color: var(--accent2);
+  font-size: 1.5rem;
+  font-weight: var(--semibold);
+}

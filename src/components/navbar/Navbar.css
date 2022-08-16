@@ -6,6 +6,11 @@
   font-weight: var(--semibold);
 }
 
+.navbar h4 a {
+  text-decoration: none;
+  color: var(--accent2);
+}
+
 .flex-container {
   display: flex;
   align-items: center;
@@ -60,12 +65,17 @@
   visibility: visible;
 }
 
-.side-nav h2 {
+.side-nav h4 {
   color: var(--secondary1);
   text-transform: uppercase;
   font-size: 1.125rem;
   margin: 20px 0px 20px 20px;
   font-weight: var(--medium);
+}
+
+.side-nav h4 a {
+  color: var(--secondary1);
+  margin-left: 0;
 }
 
 .close-btn {

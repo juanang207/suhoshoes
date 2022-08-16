@@ -41,7 +41,7 @@ class Homepage extends Component {
         </div>
         {/* Categories */}
         <div className="categories-bar">
-          <Category text="Men" />
+          <Category text="Men" link="/men-shoes"/>
           <Category text="Women" />
           <Category text="Kids" />
         </div>
