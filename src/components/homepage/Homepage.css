@@ -1,0 +1,72 @@
+.search-bar {
+  margin-top: 5px;
+}
+
+.categories-bar {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.banner {
+  width: 305px;
+  background-color: var(--grey100);
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 15px 17px;
+  margin: 0 auto;
+}
+
+.banner-img {
+  border-radius: 20px;
+}
+
+.banner h3 {
+  color: var(--accent2);
+  font-size: 1.5rem;
+  font-weight: var(--semibold);
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.shop-now-btn {
+  width: 130px;
+  height: 32px;
+  border-radius: 10px;
+  background-color: var(--secondary1);
+  border: none;
+  color: var(--primary1);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: var(--medium);
+}
+
+.new-arrivals {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.new-arrivals-heading {
+  margin: 0px 20px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-arrivals h3 {
+  color: var(--accent2);
+  font-size: 1.5rem;
+  font-weight: var(--semibold);
+}
+
+.new-arrivals p {
+  color: var(--grey300);
+  font-size: 1rem;
+  font-weight: var(--regular);
+}
+
+.section-img {
+  filter: drop-shadow(1px 2px 10px rgba(0, 0, 0, 0.2));
+  border-radius: 20px;
+}

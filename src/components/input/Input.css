@@ -1,6 +1,5 @@
 .input-box-parent {
   text-align: center;
-  margin-top: 5px;
 }
 
 .input-box {
@@ -8,6 +7,7 @@
   border: 1px solid var(--primary3);
   border-radius: 5px;
   font-size: 0.75rem;
+  font-weight: var(--regular);
   background-color: var(--primary1);
 }
 

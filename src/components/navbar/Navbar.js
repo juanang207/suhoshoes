@@ -24,7 +24,7 @@ class Navbar extends Component {
 
         <div className="navbar flex-container">
           <div className="logo flex-child">
-            <h2>Suho Shoes</h2>
+            <h4>Suho Shoes</h4>
           </div>
 
           <div className="nav-icons flex-child">
