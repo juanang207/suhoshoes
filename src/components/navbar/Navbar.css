@@ -36,7 +36,7 @@
   background: rgba(0, 0, 0, 0.25);
   opacity: 0;
   visibility: hidden;
-  transition: 0.5s ease;
+  transition: 0.5s ease-in-out;
 }
 
 .side-nav {
@@ -47,7 +47,7 @@
   z-index: 100;
   top: 0;
   left: -400px;
-  transition: 0.5s ease;
+  transition: 0.5s ease-in-out;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
