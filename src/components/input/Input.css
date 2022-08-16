@@ -1,0 +1,28 @@
+.input-box-parent {
+  text-align: center;
+  margin-top: 5px;
+  
+}
+
+.input-box {
+  padding: 8px 0px 8px;
+  border: 1px solid var(--primary3);
+  border-radius: 10px;
+  font-size: 0.75rem;
+  background-color: var(--primary1);
+}
+
+.input-box:focus {
+  color: var(--grey500);
+  outline-color: var(--secondary1);
+}
+
+.input-box::placeholder {
+  color: var(--grey300);
+}
+
+.input-box-parent .search {
+  background: transparent url("../../images/search-btn.svg") no-repeat 12px center;
+  background-size: 13px;
+}
+
