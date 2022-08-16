@@ -3,6 +3,10 @@
   --secondary1: #FDB53F;
   --accent1: #283C65;
   --accent2: #14213D;
+  --grey200: #B1B9C9;
+  --regular: 400;
+  --medium: 500;
+  --semibold: 600;
 }
 
 * {
