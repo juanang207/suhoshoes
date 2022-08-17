@@ -57,11 +57,15 @@ class Homepage extends Component {
             <h3>New Arrivals</h3>
             <p>View All</p>
           </div>
+          <div className="carousel">
           {images.map((image, i) => {
             return (
+              <div className="slide">
               <img src={image.image} alt={image.name} className="section-img" />
+              </div>
             );
           })}
+          </div>
         </div>
 
         {/* <Input width="323px" paddingLeft="10px" boxType="credit-card" placeholderText="Card Number" /> */}

@@ -17,6 +17,7 @@ class Navbar extends Component {
   render() {
     return (
       <div>
+        {/* overlay under the sidebar when it is opened */}
         <div
           className={`background-overlay ${this.state.click ? "active" : ""}`}
           onClick={() => this.setState({ click: !this.state.click })}
@@ -24,7 +25,9 @@ class Navbar extends Component {
 
         <div className="navbar flex-container">
           <div className="logo flex-child">
-            <h4><a href="/">Suho Shoes</a></h4>
+            <h4>
+              <a href="/">Suho Shoes</a>
+            </h4>
           </div>
 
           <div className="nav-icons flex-child">
@@ -38,8 +41,11 @@ class Navbar extends Component {
             />
           </div>
         </div>
+        {/* sidebar */}
         <div className={`side-nav ${this.state.click ? "active" : ""}`}>
-          <h4><a href="/">Suho Shoes</a></h4>
+          <h4>
+            <a href="/">Suho Shoes</a>
+          </h4>
           <Close
             width={12}
             height={12}
