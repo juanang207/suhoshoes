@@ -41,7 +41,7 @@ class Homepage extends Component {
         </div>
         {/* Categories */}
         <div className="categories-bar">
-          <Category text="Men" link="/men-shoes"/>
+          <Category text="Men" link="/men-shoes" />
           <Category text="Women" />
           <Category text="Kids" />
         </div>
@@ -58,13 +58,17 @@ class Homepage extends Component {
             <p>View All</p>
           </div>
           <div className="carousel">
-          {images.map((image, i) => {
-            return (
-              <div className="slide">
-              <img src={image.image} alt={image.name} className="section-img" />
-              </div>
-            );
-          })}
+            {images.map((image, i) => {
+              return (
+                <div key={i} className="slide">
+                  <img
+                    src={image.image}
+                    alt={image.name}
+                    className="section-img"
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
 
