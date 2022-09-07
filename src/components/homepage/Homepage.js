@@ -29,7 +29,6 @@ class Homepage extends Component {
     ];
     return (
       <div>
-        <Navbar />
         {/* Search bar */}
         <div className="search-bar">
           <Input

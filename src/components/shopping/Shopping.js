@@ -54,7 +54,6 @@ class Shopping extends Component {
 
     return (
       <div>
-        <Navbar />
         {/* Shopping page heading */}
         <div className="shopping-heading">
           <h3>Men Shoes</h3>

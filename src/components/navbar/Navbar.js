@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Outlet } from "react-router-dom";
+
 import { ReactComponent as Search } from "../../images/search-btn.svg";
 import { ReactComponent as Cart } from "../../images/cart.svg";
 import { ReactComponent as BurgerMenu } from "../../images/burger-menu.svg";
@@ -65,6 +67,7 @@ class Navbar extends Component {
             Returns &amp; Exchanges
           </a>
         </div>
+        <Outlet/>
       </div>
     );
   }
