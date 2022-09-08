@@ -5,58 +5,16 @@ import ShoeCard from "../shoe-card/ShoeCard";
 import { ReactComponent as Filter } from "../../images/filter.svg";
 import "./Shopping.css";
 
-import menShoe1 from "../../images/men-shoe1.jpg";
-import menShoe2 from "../../images/men-shoe2.jpg";
-import menShoe3 from "../../images/men-shoe3.jpg";
-import menShoe4 from "../../images/men-shoe4.jpg";
-import menShoe5 from "../../images/men-shoe5.jpg";
-import menShoe6 from "../../images/men-shoe6.jpg";
-
 function Shopping(props) {
-  const menShoes = [
-    {
-      id: 1,
-      name: "Continental 80",
-      price: "$100.00",
-      image: menShoe1,
-    },
-    {
-      id: 2,
-      name: "Puma Sneakers",
-      price: "$80.00",
-      image: menShoe2,
-    },
-    {
-      id: 3,
-      name: "Nike Air Max",
-      price: "$120.00",
-      image: menShoe3,
-    },
-    {
-      id: 4,
-      name: "Nike Sneakers",
-      price: "$135.00",
-      image: menShoe4,
-    },
-    {
-      id: 5,
-      name: "New Balance X90",
-      price: "$175.00",
-      image: menShoe5,
-    },
-    {
-      id: 6,
-      name: "Air Jordans",
-      price: "$155.00",
-      image: menShoe6,
-    },
-  ];
 
+  const [menShoesData, setMenShoesData] = React.useState([]);
+  
   useEffect(() => {
     axios
       .get(`http://localhost:4000/api/men-shoes`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
+        setMenShoesData(response.data);
       })
       .catch((err) => {
         console.error(err);
@@ -72,14 +30,14 @@ function Shopping(props) {
       </div>
       {/* Shopping contents */}
       <div className="shopping-contents">
-        {menShoes.map((shoe, i) => {
+        {menShoesData.map((shoe, i) => {
           return (
             <div key={i}>
               <Link to={`${shoe.id}`}>
                 <ShoeCard
                   name={shoe.name}
                   price={shoe.price}
-                  image={shoe.image}
+                  image={require(`../../images/${shoe.image}`)}
                   key={`shoe ${shoe.id}`}
                 />
               </Link>

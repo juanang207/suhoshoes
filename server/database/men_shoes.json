@@ -3,7 +3,8 @@
     "id": 1,
     "name": "Continental 80",
     "price": "$100.00",
-    "image": "men-shoe1.jpg"
+    "image": "men-shoe1.jpg",
+    "productImage": "shoes-img.png"
   },
   {
     "id": 2,
