@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import ShoeCard from "../shoe-card/ShoeCard";
 import { ReactComponent as Filter } from "../../images/filter.svg";
 import "./Shopping.css";
@@ -50,6 +51,17 @@ function Shopping(props) {
       image: menShoe6,
     },
   ];
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4000/api/men-shoes`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <div>
