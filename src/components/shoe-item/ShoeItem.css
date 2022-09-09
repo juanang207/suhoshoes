@@ -79,3 +79,58 @@
   justify-content: space-between;
   margin: 20px;
 }
+
+.add-to-bag-btn {
+  margin-bottom: 30px;
+}
+
+.shoe-item hr {
+  border: none;
+  height: 2px;
+  background-color: var(--accent2);
+}
+
+.whole-info-section {
+  margin-bottom: 30px;
+}
+
+.information-section {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.information-section h4 {
+  margin-right: 10px;
+}
+
+.information-section .arrow {
+  transform: rotate(180deg);
+}
+
+.info-body {
+  margin: 10px 20px 0px 20px;
+  text-align: left;
+  color: var(--accent1);
+  font-size: 1rem;
+  font-weight: var(--regular);
+}
+
+.info-body p {
+  opacity: 0;
+  max-height: 0;
+  overflow-y: hidden;
+}
+
+.open .arrow {
+  transform: rotate(0deg);
+}
+
+.open .info-body p {
+  margin-bottom: 20px;
+  max-height: 1000px;
+  opacity: 1;
+  
+}
+
