@@ -59,7 +59,13 @@
   opacity: 0;
 }
 
-.active {
+.side-nav.active {
+  opacity: 1;
+  left: 0;
+  visibility: visible;
+}
+
+.background-overlay.active {
   opacity: 1;
   left: 0;
   visibility: visible;

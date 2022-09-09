@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ReactComponent as Star } from "../../images/Star.svg";
 import { ReactComponent as Arrow } from "../../images/Arrow.svg";
+import { ReactComponent as Close } from "../../images/close.svg";
 import SizeButton from "../size-button/SizeButton";
 import ButtonItem from "../button-item/ButtonItem";
 import "./ShoeItem.css";
@@ -27,6 +28,7 @@ function ShoeItem() {
       open: false,
     },
   ]);
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     // get the shoes data and finds matching shoe with id
@@ -81,6 +83,38 @@ function ShoeItem() {
     );
   };
 
+  const AddToBag = (props) => {
+    return (
+      <div className={`add-to-bag-popup ${props.clicked ? "active" : ""}`}>
+        <Close
+          width={12}
+          height={12}
+          className="close-btn"
+          onClick={() => setClicked(!clicked)}
+        />
+        <h3>Successfully added to bag!</h3>
+        <div className="popup-product-info">
+          <img
+            src={require(`../../images/shoe2.png`)}
+            alt={props.shoe.name}
+            className="popup-img"
+          />
+          <div className="popup-product-info-text">
+            <h4>{props.shoe.name}</h4>
+            <p>Size: 7.5 (Men's)</p>
+            <h5>{props.shoe.price}</h5>
+          </div>
+        </div>
+        <div className="popup-btns">
+        <div className="view-bag-btn">
+        <ButtonItem text="view bag" />
+        </div>
+        <ButtonItem text="continue shopping" color="var(--accent1)" backgroundColor="var(--primary1)" />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
       {shoeData.length && (
@@ -123,21 +157,30 @@ function ShoeItem() {
           </div>
 
           <div className="add-to-bag-btn">
-            <ButtonItem text="add to bag" />
+            <ButtonItem
+              text="add to bag"
+              onClick={() => setClicked(!clicked)}
+            />
           </div>
 
           <hr />
 
           <div className="whole-info-section">
-          {infoSection.map((infoSection, i) => (
-            <InformationSection
-              infoSection={infoSection}
-              index={i}
-              toggleInfo={toggleInfo}
-            />
-          ))}
+            {infoSection.map((infoSection, i) => (
+              <InformationSection
+                infoSection={infoSection}
+                index={i}
+                toggleInfo={toggleInfo}
+              />
+            ))}
           </div>
 
+          <div
+            className={`background-overlay ${clicked ? "active" : ""}`}
+            onClick={() => setClicked(!clicked)}
+          ></div>
+
+          <AddToBag shoe={shoeData[0]} clicked={clicked} />
         </div>
       )}
     </div>
