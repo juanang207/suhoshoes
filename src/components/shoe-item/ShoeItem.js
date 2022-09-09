@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ReactComponent as Star } from "../../images/Star.svg";
 import SizeButton from "../size-button/SizeButton";
+import ButtonItem from "../button-item/ButtonItem";
 import "./ShoeItem.css";
 
 function ShoeItem() {
@@ -59,7 +60,13 @@ function ShoeItem() {
             <h4>Size</h4>
             <a href="#">Size Chart</a>
           </div>
-          <SizeButton size="7"/>
+          <div className="size-selection">
+            {shoeData[0].sizes &&
+              shoeData[0].sizes.map((size, i) => {
+                return <SizeButton size={size} key={i} />;
+              })}
+          </div>
+          <ButtonItem text="add to bag"/>
         </div>
       )}
     </div>

@@ -5,20 +5,25 @@ class SizeButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false
-    }
+      clicked: false,
+    };
   }
 
   boxClicked = () => {
     this.setState({
-      clicked: !this.state.clicked
-    })
-  }
+      clicked: !this.state.clicked,
+    });
+  };
 
   render() {
     return (
       <div className="size-button">
-        <button className={this.state.clicked ? "filled" : ""} onClick={this.boxClicked}>{this.props.size}</button>
+        <button
+          className={this.state.clicked ? "filled" : ""}
+          onClick={this.boxClicked}
+        >
+          {this.props.size}
+        </button>
       </div>
     );
   }

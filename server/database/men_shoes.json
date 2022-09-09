@@ -4,7 +4,8 @@
     "name": "Continental 80",
     "price": "$100.00",
     "image": "men-shoe1.jpg",
-    "productImage": "shoes-img.png"
+    "productImage": "shoes-img.png",
+    "sizes": [7, 7.5, 8, 8.5, 9, 9.5, 10]
   },
   {
     "id": 2,

@@ -5,11 +5,16 @@
   filter: drop-shadow(1px 2px 10px rgba(0, 0, 0, 0.2));
 }
 
+.shoe-item {
+  text-align: center;
+}
+
 .shoe-item h5 {
   font-size: 1rem;
   color: var(--grey200);
   font-weight: var(--regular);
   margin: 15px auto 5px 20px;
+  text-align: left;
 }
 
 .shoe-item h4 {
@@ -17,6 +22,7 @@
   color: var(--accent2);
   font-weight: var(--medium);
   margin-left: 20px;
+  text-align: left;
 }
 
 .shoe-item .shoe-item-price {
@@ -66,4 +72,10 @@
   margin-right: 20px;
   color: var(--grey200);
   font-weight: var(--regular);
+}
+
+.size-selection {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
 }
