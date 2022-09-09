@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../navbar/Navbar";
 import Input from "../input/Input";
 import Category from "../category/Category";
 import shoe1 from "../../images/shoe1.jpg";
