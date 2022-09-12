@@ -31,6 +31,9 @@ function ShoeItem() {
   // clicked for add to bag
   const [clicked, setClicked] = useState(false);
 
+  // copy of the shoe sizes from shoeData
+  const [shoeSizes, setShoeSizes] = useState([]);
+
   useEffect(() => {
     // get the shoes data and finds matching shoe with id
     const findShoeData = async (id) => {
@@ -38,7 +41,12 @@ function ShoeItem() {
         .get(`http://localhost:4000/api/men-shoes`)
         .then((response) => {
           let shoesArray = response.data;
-          setShoeData(shoesArray.filter((shoe) => shoe.id === parseInt(id)));
+          let shoe = shoesArray.filter((shoe) => shoe.id === parseInt(id));
+          setShoeData(shoe);
+          return shoe;
+        })
+        .then((shoe) => {
+          setShoeSizes(shoe[0].sizes);
         })
         .catch((err) => {
           console.error(err);
@@ -47,8 +55,6 @@ function ShoeItem() {
 
     findShoeData(shoeId);
   }, [shoeId]);
-
-  // console.log(shoeData);
 
   const InformationSection = (props) => {
     return (
@@ -84,6 +90,20 @@ function ShoeItem() {
     );
   };
 
+  const toggleSelected = (index) => {
+    setShoeSizes(
+      shoeSizes.map((size, i) => {
+        if (i === index) {
+          size.selected = !size.selected;
+        } else {
+          size.selected = false;
+        }
+        return size;
+      })
+    );
+  };
+
+  // Doesn't work with transitions
   // const AddToBag = (props) => {
   //   return (
   //     <div className={`add-to-bag-popup ${props.clicked ? "active" : ""}`}>
@@ -151,9 +171,16 @@ function ShoeItem() {
           </div>
 
           <div className="size-selection">
-            {shoeData[0].sizes &&
-              shoeData[0].sizes.map((size, i) => {
-                return <SizeButton size={size} key={i} />;
+            {shoeSizes &&
+              shoeSizes.map((size, i) => {
+                return (
+                  <SizeButton
+                    sizeObj={size}
+                    index={i}
+                    toggleSelected={toggleSelected}
+                    key={i}
+                  />
+                );
               })}
           </div>
 
@@ -172,6 +199,7 @@ function ShoeItem() {
                 infoSection={infoSection}
                 index={i}
                 toggleInfo={toggleInfo}
+                key={i}
               />
             ))}
           </div>
@@ -204,14 +232,16 @@ function ShoeItem() {
               </div>
             </div>
             <div className="popup-btns">
-            <div className="view-bag-btn">
-            <ButtonItem text="view bag" />
-            </div>
-            <ButtonItem text="continue shopping" color="var(--accent1)" backgroundColor="var(--primary1)" />
+              <div className="view-bag-btn">
+                <ButtonItem text="view bag" />
+              </div>
+              <ButtonItem
+                text="continue shopping"
+                color="var(--accent1)"
+                backgroundColor="var(--primary1)"
+              />
             </div>
           </div>
-
-
         </div>
       )}
     </div>

@@ -5,7 +5,15 @@
     "price": "$100.00",
     "image": "men-shoe1.jpg",
     "productImage": "shoes-img.png",
-    "sizes": [7, 7.5, 8, 8.5, 9, 9.5, 10]
+    "sizes": [
+      { "size": 7, "selected": false },
+      { "size": 7.5, "selected": false },
+      { "size": 8, "selected": false },
+      { "size": 8.5, "selected": false },
+      { "size": 9, "selected": false },
+      { "size": 9.5, "selected": false },
+      { "size": 10, "selected": false }
+    ]
   },
   {
     "id": 2,
