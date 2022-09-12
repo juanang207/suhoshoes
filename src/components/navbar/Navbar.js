@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 import { ReactComponent as Search } from "../../images/search-btn.svg";
 import { ReactComponent as Cart } from "../../images/cart.svg";
@@ -33,14 +33,21 @@ class Navbar extends Component {
           </div>
 
           <div className="nav-icons flex-child">
-            <Search width={23} height={23} className="nav-icon-child" />
-            <Cart width={22} height={24.91} className="nav-icon-child" />
-            <BurgerMenu
-              width={23}
-              height={17.52}
-              className="nav-icon-child"
-              onClick={() => this.setState({ click: !this.state.click })}
-            />
+            <div className="nav-icon-child">
+              <Search width={23} height={23} />
+            </div>
+            <div className="nav-icon-child">
+              <Link to="bag">
+                <Cart width={22} height={24.91} />
+              </Link>
+            </div>
+            <div className="nav-icon-child">
+              <BurgerMenu
+                width={23}
+                height={17.52}
+                onClick={() => this.setState({ click: !this.state.click })}
+              />
+            </div>
           </div>
         </div>
         {/* sidebar */}
@@ -67,7 +74,7 @@ class Navbar extends Component {
             Returns &amp; Exchanges
           </a>
         </div>
-        <Outlet/>
+        <Outlet />
       </div>
     );
   }
