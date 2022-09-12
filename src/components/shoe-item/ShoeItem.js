@@ -9,7 +9,11 @@ import ButtonItem from "../button-item/ButtonItem";
 import "./ShoeItem.css";
 
 function ShoeItem() {
+
+  // the shoe id from the url
   const { shoeId } = useParams();
+
+  // array of shoe that matches the shoeId
   const [shoeData, setShoeData] = useState([]);
   const [infoSection, setInfoSection] = useState([
     {
@@ -34,6 +38,9 @@ function ShoeItem() {
   // copy of the shoe sizes from shoeData
   const [shoeSizes, setShoeSizes] = useState([]);
 
+  // currently selected size
+  const [selectedSize, setSelectedSize] = useState(-1);
+
   useEffect(() => {
     // get the shoes data and finds matching shoe with id
     const findShoeData = async (id) => {
@@ -46,6 +53,7 @@ function ShoeItem() {
           return shoe;
         })
         .then((shoe) => {
+          // create copy of the shoe sizes from shoeData
           setShoeSizes(shoe[0].sizes);
         })
         .catch((err) => {
@@ -54,6 +62,7 @@ function ShoeItem() {
     };
 
     findShoeData(shoeId);
+
   }, [shoeId]);
 
   const InformationSection = (props) => {
@@ -91,10 +100,13 @@ function ShoeItem() {
   };
 
   const toggleSelected = (index) => {
+    // checks which size is selected and toggle off the unselected sizes
     setShoeSizes(
       shoeSizes.map((size, i) => {
         if (i === index) {
           size.selected = !size.selected;
+          // updates the currently selected size
+          setSelectedSize(size.size);
         } else {
           size.selected = false;
         }
@@ -169,7 +181,8 @@ function ShoeItem() {
             <h4>Size</h4>
             <a href="#">Size Chart</a>
           </div>
-
+          
+          {/* Size Selection Buttons */}
           <div className="size-selection">
             {shoeSizes &&
               shoeSizes.map((size, i) => {
@@ -192,7 +205,8 @@ function ShoeItem() {
           </div>
 
           <hr />
-
+          
+          {/* Information Section */}
           <div className="whole-info-section">
             {infoSection.map((infoSection, i) => (
               <InformationSection
@@ -203,14 +217,17 @@ function ShoeItem() {
               />
             ))}
           </div>
-
+          
+          {/* background overlay when add to bag popup is active */}
           <div
             className={`background-overlay ${clicked ? "active" : ""}`}
             onClick={() => setClicked(!clicked)}
           ></div>
 
+          {/* AddToBag component does not work with css transitons */}
           {/* <AddToBag shoe={shoeData[0]} clicked={clicked} /> */}
 
+          {/* Add to Bag popup */}
           <div className={`add-to-bag-popup ${clicked ? "active" : ""}`}>
             <Close
               width={12}
@@ -227,7 +244,7 @@ function ShoeItem() {
               />
               <div className="popup-product-info-text">
                 <h4>{shoeData[0].name}</h4>
-                <p>Size: 7.5 (Men's)</p>
+                <p>Size: {selectedSize} (Men's)</p>
                 <h5>{shoeData[0].price}</h5>
               </div>
             </div>
@@ -242,6 +259,9 @@ function ShoeItem() {
               />
             </div>
           </div>
+
+
+
         </div>
       )}
     </div>
