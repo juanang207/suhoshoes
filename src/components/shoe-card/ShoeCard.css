@@ -1,0 +1,28 @@
+.shoe-card {
+  width: 157px;
+  min-height: 190px;
+  background-color: var(--grey100);
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}
+
+.shoe-card img {
+  border-radius: 15px 15px 0px 0px;
+}
+
+.shoe-info {
+  padding: 8px 10px 10px 10px;
+}
+
+.shoe-card h5 {
+  font-weight: var(--medium);
+  font-size: 1rem;
+  color: var(--accent2);
+}
+
+.shoe-card p {
+  font-weight: var(--regular);
+  font-size: 0.875rem;
+  color: var(--accent1);
+  margin-top: 5px;
+}

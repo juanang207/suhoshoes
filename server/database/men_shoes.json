@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "name": "Continental 80",
+    "price": "$100.00",
+    "image": "men-shoe1.jpg",
+    "productImage": "shoes-img.png",
+    "sizes": [7, 7.5, 8, 8.5, 9, 9.5, 10]
+  },
+  {
+    "id": 2,
+    "name": "Puma Sneakers",
+    "price": "$80.00",
+    "image": "men-shoe2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Nike Air Max",
+    "price": "$120.00",
+    "image": "men-shoe3.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Nike Sneakers",
+    "price": "$135.00",
+    "image": "men-shoe4.jpg"
+  },
+  {
+    "id": 5,
+    "name": "New Balance X90",
+    "price": "$175.00",
+    "image": "men-shoe5.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Air Jordans",
+    "price": "$155.00",
+    "image": "men-shoe6.jpg"
+  }
+]

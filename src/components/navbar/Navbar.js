@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link, Outlet } from "react-router-dom";
+
 import { ReactComponent as Search } from "../../images/search-btn.svg";
 import { ReactComponent as Cart } from "../../images/cart.svg";
 import { ReactComponent as BurgerMenu } from "../../images/burger-menu.svg";
@@ -17,6 +19,7 @@ class Navbar extends Component {
   render() {
     return (
       <div>
+        {/* overlay under the sidebar when it is opened */}
         <div
           className={`background-overlay ${this.state.click ? "active" : ""}`}
           onClick={() => this.setState({ click: !this.state.click })}
@@ -24,29 +27,41 @@ class Navbar extends Component {
 
         <div className="navbar flex-container">
           <div className="logo flex-child">
-            <h2>Suho Shoes</h2>
+            <h4>
+              <a href="/">Suho Shoes</a>
+            </h4>
           </div>
 
           <div className="nav-icons flex-child">
-            <Search width={23} height={23} className="nav-icon-child" />
-            <Cart width={22} height={24.91} className="nav-icon-child" />
-            <BurgerMenu
-              width={23}
-              height={17.52}
-              className="nav-icon-child"
-              onClick={() => this.setState({ click: !this.state.click })}
-            />
+            <div className="nav-icon-child">
+              <Search width={23} height={23} />
+            </div>
+            <div className="nav-icon-child">
+              <Link to="bag">
+                <Cart width={22} height={24.91} />
+              </Link>
+            </div>
+            <div className="nav-icon-child">
+              <BurgerMenu
+                width={23}
+                height={17.52}
+                onClick={() => this.setState({ click: !this.state.click })}
+              />
+            </div>
           </div>
         </div>
+        {/* sidebar */}
         <div className={`side-nav ${this.state.click ? "active" : ""}`}>
-          <h2>Suho Shoes</h2>
+          <h4>
+            <a href="/">Suho Shoes</a>
+          </h4>
           <Close
             width={12}
             height={12}
             className="close-btn"
             onClick={() => this.setState({ click: !this.state.click })}
           />
-          <a href="#section">Men</a>
+          <a href="/men-shoes">Men</a>
           <a href="#section">Women</a>
           <a href="#section">Kids</a>
           <a href="#section">New Arrivals</a>
@@ -59,6 +74,7 @@ class Navbar extends Component {
             Returns &amp; Exchanges
           </a>
         </div>
+        <Outlet />
       </div>
     );
   }

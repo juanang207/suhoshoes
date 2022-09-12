@@ -1,0 +1,32 @@
+.input-box-parent {
+  text-align: center;
+}
+
+.input-box {
+  padding: 8px 0px 8px;
+  border: 1px solid var(--primary3);
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: var(--regular);
+  background-color: var(--primary1);
+}
+
+.input-box:focus {
+  color: var(--grey500);
+  outline-color: var(--secondary1);
+}
+
+.input-box::placeholder {
+  color: var(--grey300);
+}
+
+.input-box-parent .search {
+  background: transparent url("../../images/search-btn.svg") no-repeat 12px center;
+  background-size: 13px;
+  border-radius: 10px;
+}
+
+.input-box-parent .credit-card {
+  background: transparent url("../../images/credit-card.svg") no-repeat right 10px center;
+  background-size: 16px;
+}

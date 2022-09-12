@@ -1,0 +1,16 @@
+.size-button button {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid var(--accent1);
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: var(--regular);
+  color: var(--accent1);
+}
+
+.size-button .filled {
+  background-color: var(--secondary1);
+  border: 0;
+  color: var(--primary1);
+}

@@ -1,0 +1,12 @@
+.button-item button {
+  width: 335px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--secondary1);
+  text-transform: uppercase;
+  color: var(--primary1);
+  font-size: 1.125rem;
+  font-weight: var(--medium);
+  text-align: center;
+}

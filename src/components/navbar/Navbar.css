@@ -1,9 +1,14 @@
-.navbar h2 {
+.navbar h4 {
   color: var(--accent2);
   text-transform: uppercase;
   font-size: 1.125rem;
   margin: 20px 0px 20px 20px;
   font-weight: var(--semibold);
+}
+
+.navbar h4 a {
+  text-decoration: none;
+  color: var(--accent2);
 }
 
 .flex-container {
@@ -54,18 +59,29 @@
   opacity: 0;
 }
 
-.active {
+.side-nav.active {
   opacity: 1;
   left: 0;
   visibility: visible;
 }
 
-.side-nav h2 {
+.background-overlay.active {
+  opacity: 1;
+  left: 0;
+  visibility: visible;
+}
+
+.side-nav h4 {
   color: var(--secondary1);
   text-transform: uppercase;
   font-size: 1.125rem;
   margin: 20px 0px 20px 20px;
   font-weight: var(--medium);
+}
+
+.side-nav h4 a {
+  color: var(--secondary1);
+  margin-left: 0;
 }
 
 .close-btn {
