@@ -2,27 +2,18 @@ import React, { Component } from "react";
 import "./SizeButton.css";
 
 class SizeButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicked: false,
-    };
-  }
 
-  boxClicked = () => {
-    this.setState({
-      clicked: !this.state.clicked,
-    });
-  };
 
   render() {
+    const { sizeObj, index, toggleSelected } = this.props;
+
     return (
-      <div className="size-button">
+      <div className="size-button" key={index}>
         <button
-          className={this.state.clicked ? "filled" : ""}
-          onClick={this.boxClicked}
+          className={sizeObj.selected ? "filled" : ""}
+          onClick={() => toggleSelected(index)}
         >
-          {this.props.size}
+          {sizeObj.size}
         </button>
       </div>
     );
