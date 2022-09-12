@@ -233,6 +233,7 @@ function ShoeItem() {
               width={12}
               height={12}
               className="close-btn"
+              fill="var(--primary1)"
               onClick={() => setClicked(!clicked)}
             />
             <h3>Successfully added to bag!</h3>
