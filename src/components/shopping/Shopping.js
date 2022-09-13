@@ -7,18 +7,31 @@ import "./Shopping.css";
 
 function Shopping(props) {
 
-  const [menShoesData, setMenShoesData] = React.useState([]);
+  const [data, setData] = React.useState([]);
+
   
   useEffect(() => {
+    if(props.category === "Nike Shoes") {
     axios
-      .get(`http://localhost:4000/api/men-shoes`)
+      .get(`http://localhost:4000/api/nike-shoes`)
       .then((response) => {
         // console.log(response.data);
-        setMenShoesData(response.data);
+        setData(response.data);
       })
       .catch((err) => {
         console.error(err);
       });
+    } else if (props.category === "Adidas Shoes") {
+      axios
+      .get(`http://localhost:4000/api/adidas-shoes`)
+      .then((response) => {
+        // console.log(response.data);
+        setData(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    }
   }, []);
 
   return (
@@ -30,7 +43,7 @@ function Shopping(props) {
       </div>
       {/* Shopping contents */}
       <div className="shopping-contents">
-        {menShoesData.map((shoe, i) => {
+        {data.map((shoe, i) => {
           return (
             <div key={i}>
               <Link to={`${shoe.id}`}>

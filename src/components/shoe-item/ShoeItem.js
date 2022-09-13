@@ -45,7 +45,7 @@ function ShoeItem() {
     // get the shoes data and finds matching shoe with id
     const findShoeData = async (id) => {
       await axios
-        .get(`http://localhost:4000/api/men-shoes`)
+        .get(`http://localhost:4000/api/nike-shoes`)
         .then((response) => {
           let shoesArray = response.data;
           let shoe = shoesArray.filter((shoe) => shoe.id);

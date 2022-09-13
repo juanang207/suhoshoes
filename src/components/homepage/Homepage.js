@@ -39,8 +39,8 @@ class Homepage extends Component {
         </div>
         {/* Categories */}
         <div className="categories-bar">
-          <Category text="Men" link="/men-shoes" />
-          <Category text="Women" />
+          <Category text="Nike" link="/nike-shoes" />
+          <Category text="Adidas" link="/adidas-shoes" />
           <Category text="Kids" />
         </div>
         {/* Featured Banner */}
