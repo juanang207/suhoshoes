@@ -41,6 +41,7 @@
   color: var(--accent2);
   font-weight: var(--medium);
   text-align: left;
+  margin-bottom: 5px;
 }
 
 .bag-item .shoe-size {
@@ -48,6 +49,7 @@
   color: var(--accent2);
   font-weight: var(--regular);
   text-align: left;
+  margin-bottom: 5px;
 }
 
 .bag-item .item-details-price-qty {
@@ -68,4 +70,57 @@
 .bag-item .arrow {
   margin-left: 5px;
   transform: rotate(180deg);
+}
+
+.promo-code {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.order-summary {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.order-summary h4{ 
+  margin-bottom: 20px;
+  font-size: 1.125rem;
+  color: var(--accent2);
+  font-weight: var(--medium);
+}
+
+.order-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order-details p {
+  width: 50%;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--accent2);
+  font-weight: var(--regular);
+}
+
+.order-details .right-align {
+  text-align: right;
+}
+
+.order-details .order-total {
+  font-weight: var(--semibold);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.checkout-btns {
+  text-align: center;
+}
+
+
+.checkout-btns .paypal-btn {
+  width: 335px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 10px;
 }
