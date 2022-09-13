@@ -1,6 +1,7 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import Select from "react-select";
 import { ReactComponent as Close } from "../../images/close.svg";
+import { withRouter } from "../../withRouter";
 import Input from "../input/Input";
 import ButtonItem from "../button-item/ButtonItem";
 import "./Bag.css";
@@ -8,10 +9,15 @@ import "./Bag.css";
 class Bag extends Component {
   constructor() {
     super();
+    this.goToCheckoutShipping = this.goToCheckoutShipping.bind(this);
     this.state = {
       quantitySelected: 1,
     };
   }
+
+  goToCheckoutShipping = () => {
+    this.props.navigate(`/checkout-shipping`);
+  };
 
   render() {
     const changeSelection = (quantity) => {
@@ -129,7 +135,9 @@ class Bag extends Component {
 
           <div className="order-details">
             <p>{this.state.quantitySelected} Item(s)</p>
-            <p className="right-align">{`$${(this.state.quantitySelected * 100).toFixed(2)}`}</p>
+            <p className="right-align">{`$${(
+              this.state.quantitySelected * 100
+            ).toFixed(2)}`}</p>
             <p>Shipping</p>
             <p className="right-align">$5.99</p>
             <p>Sales Tax</p>
@@ -146,11 +154,11 @@ class Bag extends Component {
               alt={`paypal checkout`}
             />
           </button>
-          <ButtonItem text="Checkout" />
+          <ButtonItem text="Checkout" onClick={this.goToCheckoutShipping} />
         </div>
       </div>
     );
   }
 }
 
-export default Bag;
+export default withRouter(Bag);
