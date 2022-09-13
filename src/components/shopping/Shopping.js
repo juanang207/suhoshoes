@@ -31,6 +31,16 @@ function Shopping(props) {
       .catch((err) => {
         console.error(err);
       });
+    } else if (props.category === "Puma Shoes") {
+      axios
+      .get(`http://localhost:4000/api/puma-shoes`)
+      .then((response) => {
+        // console.log(response.data);
+        setData(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     }
   }, []);
 

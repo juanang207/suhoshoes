@@ -64,7 +64,7 @@ class Navbar extends Component {
           />
           <a href="/nike-shoes">Nike</a>
           <a href="/adidas-shoes">Adidas</a>
-          <a href="#section">Kids</a>
+          <a href="/puma-shoes">Puma</a>
           <a href="#section">New Arrivals</a>
           <a href="#section">Sale</a>
           <hr />

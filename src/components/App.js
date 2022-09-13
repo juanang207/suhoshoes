@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "./homepage/Homepage";
 import NikeShoes from "./nike-shoes/NikeShoes";
 import AdidasShoes from "./adidas-shoes/AdidasShoes";
+import PumaShoes from "./puma-shoes/PumaShoes";
 import Navbar from "./navbar/Navbar";
 import Bag from "./bag/Bag";
 import "./index.css";
@@ -17,6 +18,7 @@ class App extends Component {
             <Route index element={<Homepage />} />
             <Route path="nike-shoes/*" element={<NikeShoes />} />
             <Route path="adidas-shoes/*" element={<AdidasShoes />} />
+            <Route path="puma-shoes/*" element= {<PumaShoes />} />
             <Route path="bag" element={<Bag />} />
           </Route>
         </Routes>

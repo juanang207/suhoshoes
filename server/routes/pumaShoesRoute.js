@@ -3,11 +3,11 @@ const SneaksAPI = require('sneaks-api');
 const sneaks = new SneaksAPI();
 
 
-const adidasShoesJSON = []
-sneaks.getProducts("adidas", 10, async function(err,products){
+const pumaShoesJSON = []
+sneaks.getProducts("puma", 10, async function(err,products){
   if (!err){
   for(let i = 0 ; i<products.length; i++){
-    adidasShoesJSON.push(
+    pumaShoesJSON.push(
     {
       "id": products[i]._id,
       "name": products[i].shoeName,
@@ -30,7 +30,7 @@ sneaks.getProducts("adidas", 10, async function(err,products){
 
 router.get("/", async (req, res) => {
   
-  res.send(adidasShoesJSON)
+  res.send(pumaShoesJSON)
   // res.sendFile("men_shoes.json", { root: "./database" });
   
 });
