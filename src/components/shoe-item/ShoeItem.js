@@ -122,10 +122,7 @@ function ShoeItem() {
         <div className="shoe-item">
           <img
             src={
-              shoeData[0].productImage
-                ? require(`../../images/${shoeData[0].productImage}`)
-                : ""
-            }
+              shoeData[0].productImage}
             alt={shoeData[0].name}
             className="product-img"
           />

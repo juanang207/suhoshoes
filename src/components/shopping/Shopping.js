@@ -37,7 +37,7 @@ function Shopping(props) {
                 <ShoeCard
                   name={shoe.name}
                   price={shoe.price}
-                  image={require(`../../images/${shoe.image}`)}
+                  image={shoe.image}
                   key={`shoe ${shoe.id}`}
                 />
               </Link>
