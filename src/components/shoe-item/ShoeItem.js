@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ReactComponent as Star } from "../../images/Star.svg";
 import { ReactComponent as Arrow } from "../../images/Arrow.svg";
@@ -114,6 +114,12 @@ function ShoeItem() {
       })
     );
   };
+
+  let navigate = useNavigate(); 
+  const goToBag = () =>{ 
+    let path = `/bag`; 
+    navigate(path);
+  }
 
   // Doesn't work with transitions
   // const AddToBag = (props) => {
@@ -251,7 +257,7 @@ function ShoeItem() {
             </div>
             <div className="popup-btns">
               <div className="view-bag-btn">
-                <ButtonItem text="view bag" />
+                <ButtonItem text="view bag" onClick={goToBag}/>
               </div>
               <ButtonItem
                 text="continue shopping"

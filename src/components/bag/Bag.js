@@ -1,13 +1,30 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import Select from "react-select";
 import { ReactComponent as Close } from "../../images/close.svg";
-import { ReactComponent as Arrow } from "../../images/Arrow.svg";
 import Input from "../input/Input";
 import ButtonItem from "../button-item/ButtonItem";
 import "./Bag.css";
 
 class Bag extends Component {
+  constructor() {
+    super();
+    this.state = {
+      quantitySelected: 1,
+    };
+  }
+
   render() {
+    const changeSelection = (quantity) => {
+      this.setState({ quantitySelected: quantity.value });
+    };
+
     const BagItem = (props) => {
+      // create array of objects of label and value from 1 to 10 for dropdown quantity
+      const options = [...new Array(10)].map((each, index) => ({
+        label: index + 1,
+        value: index + 1,
+      }));
+
       return (
         <div className="bag-item">
           <img
@@ -22,8 +39,61 @@ class Bag extends Component {
             <div className="item-details-price-qty">
               <p>$100.00</p>
               <div className="quantity">
-                <p>Qty: 1</p>
-                <Arrow width={12} height={7} className="arrow" />
+                <p>Qty:</p>
+                <div className="dropdown">
+                  <Select
+                    options={options}
+                    onChange={(quantity) => changeSelection(quantity)}
+                    placeholder={this.state.quantitySelected}
+                    components={{
+                      IndicatorSeparator: () => null,
+                    }}
+                    isSearchable={false}
+                    styles={{
+                      placeholder: (base) => ({
+                        ...base,
+                        fontSize: "0.875rem",
+                        color: "var(--accent2)",
+                        fontWeight: "var(--semibold)",
+                      }),
+                      option: (provided, state) => ({
+                        ...provided,
+                        color: "var(--accent2)",
+                        backgroundColor: state.isSelected
+                          ? "var(--secondary1)"
+                          : "var(--grey100)",
+                      }),
+                      control: (base, state) => ({
+                        ...base,
+                        border: state.isFocused
+                          ? "1px solid var(--accent2)"
+                          : "none",
+                        backgroundColor: "none",
+                      }),
+                      valueContainer: (provided, state) => ({
+                        ...provided,
+                        padding: 0,
+                        margin: 0,
+                      }),
+                      indicatorsContainer: (provided, state) => ({
+                        ...provided,
+                      }),
+                      container: (base) => ({
+                        ...base,
+                        backgroundColor: "none",
+                        paddingLeft: 5,
+                      }),
+                      menu: (base) => ({
+                        ...base,
+                        backgroundColor: "var(--grey100)",
+                      }),
+                      dropdownIndicator: (base) => ({
+                        ...base,
+                        color: "var(--accent2)",
+                      }),
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -58,14 +128,14 @@ class Bag extends Component {
           <h4>Order Summary</h4>
 
           <div className="order-details">
-            <p>1 Item</p>
-            <p className="right-align">$100.00</p>
+            <p>{this.state.quantitySelected} Item</p>
+            <p className="right-align">{`$${(this.state.quantitySelected * 100).toFixed(2)}`}</p>
             <p>Shipping</p>
             <p className="right-align">$5.99</p>
             <p>Sales Tax</p>
             <p className="right-align">-</p>
             <p className="order-total">Total</p>
-            <p className="order-total right-align">$105.99</p>
+            <p className="order-total right-align">{`$105.99`}</p>
           </div>
         </div>
 
