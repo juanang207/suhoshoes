@@ -4,3 +4,118 @@
   font-size: 1.5rem;
   font-weight: var(--semibold);
 }
+
+.bag-items {
+  margin-top: 20px;
+}
+
+.bag-item {
+  margin: 0 auto;
+  width: 335px;
+  height: 170px;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  background-color: var(--grey100);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.bag-item img {
+  border-radius: 20px;
+  margin: 15px 0px 15px 15px;
+}
+
+.bag-item .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.bag-item .item-details {
+  margin-left: 15px;
+}
+
+.bag-item .shoe-name {
+  font-size: 1rem;
+  color: var(--accent2);
+  font-weight: var(--medium);
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.bag-item .shoe-size {
+  font-size: 0.875rem;
+  color: var(--accent2);
+  font-weight: var(--regular);
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.bag-item .item-details-price-qty {
+  font-size: 0.875rem;
+  color: var(--accent2);
+  font-weight: var(--semibold);
+  display: flex;
+}
+
+.bag-item .quantity {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+}
+
+.promo-code {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.order-summary {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.order-summary h4{ 
+  margin-bottom: 20px;
+  font-size: 1.125rem;
+  color: var(--accent2);
+  font-weight: var(--medium);
+}
+
+.order-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order-details p {
+  width: 50%;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--accent2);
+  font-weight: var(--regular);
+}
+
+.order-details .right-align {
+  text-align: right;
+}
+
+.order-details .order-total {
+  font-weight: var(--semibold);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.checkout-btns {
+  text-align: center;
+}
+
+
+.checkout-btns .paypal-btn {
+  width: 335px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 10px;
+}

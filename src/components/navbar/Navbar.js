@@ -58,6 +58,7 @@ class Navbar extends Component {
           <Close
             width={12}
             height={12}
+            fill="var(--primary1)"
             className="close-btn"
             onClick={() => this.setState({ click: !this.state.click })}
           />
