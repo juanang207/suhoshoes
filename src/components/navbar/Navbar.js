@@ -61,8 +61,8 @@ class Navbar extends Component {
             className="close-btn"
             onClick={() => this.setState({ click: !this.state.click })}
           />
-          <a href="/men-shoes">Men</a>
-          <a href="#section">Women</a>
+          <a href="/nike-shoes">Nike</a>
+          <a href="/adidas-shoes">Adidas</a>
           <a href="#section">Kids</a>
           <a href="#section">New Arrivals</a>
           <a href="#section">Sale</a>

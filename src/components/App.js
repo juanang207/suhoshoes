@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./homepage/Homepage";
-import MenShoes from "./men-shoes/MenShoes";
+import NikeShoes from "./nike-shoes/NikeShoes";
+import AdidasShoes from "./adidas-shoes/AdidasShoes";
 import Navbar from "./navbar/Navbar";
 import Bag from "./bag/Bag";
 import "./index.css";
@@ -14,7 +15,8 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<Navbar />}>
             <Route index element={<Homepage />} />
-            <Route path="men-shoes/*" element={<MenShoes />} />
+            <Route path="nike-shoes/*" element={<NikeShoes />} />
+            <Route path="adidas-shoes/*" element={<AdidasShoes />} />
             <Route path="bag" element={<Bag />} />
           </Route>
         </Routes>
