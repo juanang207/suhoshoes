@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component} from "react";
 import Select from "react-select";
 import { ReactComponent as Close } from "../../images/close.svg";
 import Input from "../input/Input";
@@ -18,7 +18,7 @@ class Bag extends Component {
       this.setState({ quantitySelected: quantity.value });
     };
 
-    const BagItem = (props) => {
+    const BagItem = () => {
       // create array of objects of label and value from 1 to 10 for dropdown quantity
       const options = [...new Array(10)].map((each, index) => ({
         label: index + 1,
@@ -128,7 +128,7 @@ class Bag extends Component {
           <h4>Order Summary</h4>
 
           <div className="order-details">
-            <p>{this.state.quantitySelected} Item</p>
+            <p>{this.state.quantitySelected} Item(s)</p>
             <p className="right-align">{`$${(this.state.quantitySelected * 100).toFixed(2)}`}</p>
             <p>Shipping</p>
             <p className="right-align">$5.99</p>
