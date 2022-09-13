@@ -48,7 +48,7 @@ function ShoeItem() {
         .get(`http://localhost:4000/api/men-shoes`)
         .then((response) => {
           let shoesArray = response.data;
-          let shoe = shoesArray.filter((shoe) => shoe.id === parseInt(id));
+          let shoe = shoesArray.filter((shoe) => shoe.id);
           setShoeData(shoe);
           return shoe;
         })
@@ -154,10 +154,7 @@ function ShoeItem() {
         <div className="shoe-item">
           <img
             src={
-              shoeData[0].productImage
-                ? require(`../../images/${shoeData[0].productImage}`)
-                : ""
-            }
+              shoeData[0].image}
             alt={shoeData[0].name}
             className="product-img"
           />
@@ -238,7 +235,7 @@ function ShoeItem() {
             <h3>Successfully added to bag!</h3>
             <div className="popup-product-info">
               <img
-                src={require(`../../images/shoe2.png`)}
+                src={shoeData[0].image}
                 alt={shoeData[0].name}
                 className="popup-img"
               />

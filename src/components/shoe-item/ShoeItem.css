@@ -3,6 +3,7 @@
   margin: 0 auto;
   border-bottom: 2px solid var(--secondary1);
   filter: drop-shadow(1px 2px 10px rgba(0, 0, 0, 0.2));
+  width:175px;
 }
 
 .shoe-item {
