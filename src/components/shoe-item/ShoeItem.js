@@ -190,7 +190,7 @@ function ShoeItem() {
             <h3>Successfully added to bag!</h3>
             <div className="popup-product-info">
               <img
-                src={require(`../../images/shoe2.png`)}
+                src={shoeData[0].image}
                 alt={shoeData[0].name}
                 className="popup-img"
               />
