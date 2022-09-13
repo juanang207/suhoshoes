@@ -70,9 +70,6 @@ class Bag extends Component {
         </div>
 
         <div className="checkout-btns">
-          {/* <div>
-          <input type="image" alt="Paypal Checkout" src={require(`../../images/Paypal.png`)} className="paypal-btn"/>
-          </div> */}
           <button className="paypal-btn">
             <img
               src={require(`../../images/Paypal.png`)}
