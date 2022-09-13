@@ -1,0 +1,28 @@
+.checkout-tab {
+  display: flex;
+  align-items: center;
+}
+
+
+.checkout-tab .circle{
+  border-radius: 50%;
+  width: 24px;
+  line-height: 24px;
+  background-color: var(--secondary1);
+  color: var(--primary1);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: var(--regular);
+}
+
+.checkout-tab p {
+  font-size: 0.875rem;
+  color: var(--accent2);
+  font-weight: var(--medium);
+  margin-left: 5px;
+}
+
+.checkout-shipping {
+  display: flex;
+  justify-content: space-around
+}
