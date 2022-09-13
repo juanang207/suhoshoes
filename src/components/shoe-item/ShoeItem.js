@@ -38,7 +38,7 @@ function ShoeItem() {
         .get(`http://localhost:4000/api/men-shoes`)
         .then((response) => {
           let shoesArray = response.data;
-          setShoeData(shoesArray.filter((shoe) => shoe.id === parseInt(id)));
+          setShoeData(shoesArray.filter((shoe) => shoe.id));
         })
         .catch((err) => {
           console.error(err);
@@ -122,7 +122,7 @@ function ShoeItem() {
         <div className="shoe-item">
           <img
             src={
-              shoeData[0].productImage}
+              shoeData[0].image}
             alt={shoeData[0].name}
             className="product-img"
           />

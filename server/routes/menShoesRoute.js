@@ -4,7 +4,8 @@ const sneaks = new SneaksAPI();
 
 
 const mensShoesJSON = []
-sneaks.getProducts("nike", 10, function(err,products){
+sneaks.getProducts("nike", 10, async function(err,products){
+  if (!err){
   for(let i = 0 ; i<products.length; i++){
     mensShoesJSON.push(
     {
@@ -15,9 +16,11 @@ sneaks.getProducts("nike", 10, function(err,products){
     }
   )
   }
+}
 })
 
 router.get("/", async (req, res) => {
+  
   res.send(mensShoesJSON)
   // res.sendFile("men_shoes.json", { root: "./database" });
   
