@@ -8,7 +8,7 @@ function NikeShoes() {
     <div>
       <Routes>
         <Route index element={<Shopping category="Nike Shoes" />} />
-        <Route path=":shoeId" element={<ShoeItem />} />
+        <Route path=":shoeId" element={<ShoeItem category="Nike"/>} />
       </Routes>
     </div>
   );

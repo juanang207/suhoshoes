@@ -8,7 +8,7 @@ import SizeButton from "../size-button/SizeButton";
 import ButtonItem from "../button-item/ButtonItem";
 import "./ShoeItem.css";
 
-function ShoeItem() {
+function ShoeItem(props) {
 
   // the shoe id from the url
   const { shoeId } = useParams();
@@ -44,9 +44,40 @@ function ShoeItem() {
   useEffect(() => {
     // get the shoes data and finds matching shoe with id
     const findShoeData = async (id) => {
+      if (props.category === "nike"){
       await axios
         .get(`http://localhost:4000/api/nike-shoes`)
+        .then((response) => {
+          let shoesArray = response.data;
+          let shoe = shoesArray.filter((shoe) => shoe.id);
+          setShoeData(shoe);
+          return shoe;
+        })
+        .then((shoe) => {
+          // create copy of the shoe sizes from shoeData
+          setShoeSizes(shoe[0].sizes);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      } else if (props.category === "Puma") {
+        await axios
         .get(`http://localhost:4000/api/puma-shoes`)
+        .then((response) => {
+          let shoesArray = response.data;
+          let shoe = shoesArray.filter((shoe) => shoe.id);
+          setShoeData(shoe);
+          return shoe;
+        })
+        .then((shoe) => {
+          // create copy of the shoe sizes from shoeData
+          setShoeSizes(shoe[0].sizes);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      } else if (props.category === "Adidas") {
+        await axios
         .get(`http://localhost:4000/api/adidas-shoes`)
         .then((response) => {
           let shoesArray = response.data;
@@ -61,6 +92,7 @@ function ShoeItem() {
         .catch((err) => {
           console.error(err);
         });
+      }
     };
 
     findShoeData(shoeId);
@@ -166,7 +198,7 @@ function ShoeItem() {
             alt={shoeData[0].name}
             className="product-img"
           />
-          <h5>Men's</h5>
+          <h5>{props.category}</h5>
 
           <div className="item-name-section">
             <div>
