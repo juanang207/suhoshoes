@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "../../withRouter";
 import ButtonItem from "../button-item/ButtonItem";
 import InputField from "../input-field/InputField";
 import "./CheckoutShipping.css";
@@ -6,6 +7,7 @@ import "./CheckoutShipping.css";
 class CheckoutShipping extends Component {
   constructor() {
     super();
+    this.goToCheckoutPayment = this.goToCheckoutPayment.bind(this);
     this.state = {
       shippingOptions: [
         { isSelected: true, name: "USPS Ground 5-7 Business Days - $5.99" },
@@ -13,6 +15,10 @@ class CheckoutShipping extends Component {
       ],
     };
   }
+
+  goToCheckoutPayment = () => {
+    this.props.navigate(`/checkout-payment`);
+  };
 
   render() {
     const CheckoutTab = (props) => {
@@ -120,11 +126,11 @@ class CheckoutShipping extends Component {
         </div>
 
         <div className="payment-btn">
-          <ButtonItem text="proceed to payment" />
+          <ButtonItem text="proceed to payment" onClick={this.goToCheckoutPayment}/>
         </div>
       </div>
     );
   }
 }
 
-export default CheckoutShipping;
+export default withRouter(CheckoutShipping);
