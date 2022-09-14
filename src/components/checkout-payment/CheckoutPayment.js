@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import "./CheckoutPayment.css";
 
 class CheckoutPayment extends Component {
   render() {
     return (
       <div className="checkout-payment">
-        <h2>hi</h2>
+        <CheckoutTabs page="Payment" completed={["Shipping"]}/>
       </div>
     );
   }

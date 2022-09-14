@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "../../withRouter";
 import ButtonItem from "../button-item/ButtonItem";
+import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import InputField from "../input-field/InputField";
 import "./CheckoutShipping.css";
 
@@ -21,15 +22,6 @@ class CheckoutShipping extends Component {
   };
 
   render() {
-    const CheckoutTab = (props) => {
-      return (
-        <div className={`checkout-tab ${props.tabType ? props.tabType : ""}`}>
-          <div className={`circle`}>{props.step}</div>
-          <p>{props.tabName}</p>
-        </div>
-      );
-    };
-
     const FormField = (props) => {
       return (
         <div className="shipping-form-field">
@@ -84,15 +76,7 @@ class CheckoutShipping extends Component {
 
     return (
       <div className="checkout-shipping">
-        <div className="checkout-tabs">
-          <CheckoutTab tabName="Shipping" step="1" />
-          <div className="separator"></div>
-          <CheckoutTab tabName="Payment" step="2" tabType="disabled"/>
-          <div className="separator"></div>
-          <CheckoutTab tabName="Review" step="3" tabType="disabled"/>
-        </div>
-
-        <hr />
+        <CheckoutTabs page="Shipping"/>
 
         <div className="shipping-form">
           <h3>Contact</h3>
@@ -126,7 +110,10 @@ class CheckoutShipping extends Component {
         </div>
 
         <div className="payment-btn">
-          <ButtonItem text="proceed to payment" onClick={this.goToCheckoutPayment}/>
+          <ButtonItem
+            text="proceed to payment"
+            onClick={this.goToCheckoutPayment}
+          />
         </div>
       </div>
     );
