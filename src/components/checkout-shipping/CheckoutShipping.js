@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ButtonItem from "../button-item/ButtonItem";
 import InputField from "../input-field/InputField";
 import "./CheckoutShipping.css";
 
@@ -16,8 +17,8 @@ class CheckoutShipping extends Component {
   render() {
     const CheckoutTab = (props) => {
       return (
-        <div className="checkout-tab">
-          <div className="circle">{props.step}</div>
+        <div className={`checkout-tab ${props.tabType ? props.tabType : ""}`}>
+          <div className={`circle`}>{props.step}</div>
           <p>{props.tabName}</p>
         </div>
       );
@@ -80,9 +81,9 @@ class CheckoutShipping extends Component {
         <div className="checkout-tabs">
           <CheckoutTab tabName="Shipping" step="1" />
           <div className="separator"></div>
-          <CheckoutTab tabName="Payment" step="2" />
+          <CheckoutTab tabName="Payment" step="2" tabType="disabled"/>
           <div className="separator"></div>
-          <CheckoutTab tabName="Review" step="3" />
+          <CheckoutTab tabName="Review" step="3" tabType="disabled"/>
         </div>
 
         <hr />
@@ -116,6 +117,10 @@ class CheckoutShipping extends Component {
               />
             ))}
           </div>
+        </div>
+
+        <div className="payment-btn">
+          <ButtonItem text="proceed to payment" />
         </div>
       </div>
     );
