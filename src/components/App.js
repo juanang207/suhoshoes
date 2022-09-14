@@ -5,7 +5,9 @@ import NikeShoes from "./nike-shoes/NikeShoes";
 import AdidasShoes from "./adidas-shoes/AdidasShoes";
 import Navbar from "./navbar/Navbar";
 import Bag from "./bag/Bag";
+import CheckoutShipping from "./checkout-shipping/CheckoutShipping";
 import "./index.css";
+
 
 
 class App extends Component {
@@ -18,6 +20,7 @@ class App extends Component {
             <Route path="nike-shoes/*" element={<NikeShoes />} />
             <Route path="adidas-shoes/*" element={<AdidasShoes />} />
             <Route path="bag" element={<Bag />} />
+            <Route path="checkout-shipping" element={<CheckoutShipping />} />
           </Route>
         </Routes>
       </div>
