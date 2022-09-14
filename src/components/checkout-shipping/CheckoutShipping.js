@@ -45,10 +45,8 @@ class CheckoutShipping extends Component {
           >
             <input
               type="radio"
-              name="react-tips"
               value="option1"
               checked={props.shippingOption.isSelected}
-              className="form-check-input"
               onChange={() => props.toggleOptions(props.index)}
             />
             {props.shippingOption.name}

@@ -1,0 +1,30 @@
+.payment-form h3{
+  margin-top: 20px;
+  margin-left: 20px;
+  color: var(--accent2);
+  font-size: 1.5rem;
+  font-weight: var(--medium);
+  text-transform: uppercase;
+}
+
+.payment-options {
+  margin-left: 25px;
+  margin-top: 20px;
+  font-size: 1rem;
+  color: var(--accent1);
+  font-weight: var(--regular);
+}
+
+.payment-option {
+  margin-top: 10px;
+}
+
+.creditcard-images {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.creditcard-images img{
+  margin-right: 5px;
+}
