@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Select from "react-select";
 import { ReactComponent as Close } from "../../images/close.svg";
 import { withRouter } from "../../withRouter";
-import Input from "../input/Input";
+import InputField from "../input-field/InputField";
 import ButtonItem from "../button-item/ButtonItem";
 import "./Bag.css";
 
@@ -123,7 +123,7 @@ class Bag extends Component {
         </div>
 
         <div className="promo-code">
-          <Input
+          <InputField
             width="323px"
             paddingLeft="10px"
             placeholderText="Enter promo code"

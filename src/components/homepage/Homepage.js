@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Input from "../input/Input";
+import InputField from "../input-field/InputField";
 import Category from "../category/Category";
 import shoe1 from "../../images/shoe1.jpg";
 import shoe2 from "../../images/shoe2.png";
@@ -30,7 +30,7 @@ class Homepage extends Component {
       <div>
         {/* Search bar */}
         <div className="search-bar">
-          <Input
+          <InputField
             width="263px"
             paddingLeft="36px"
             boxType="search"

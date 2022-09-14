@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./Input.css";
+import "./InputField.css";
 
-class Input extends Component {
+class InputField extends Component {
   render() {
     return (
       <div className="input-box-parent">
@@ -16,4 +16,4 @@ class Input extends Component {
   }
 }
 
-export default Input;
+export default InputField;
