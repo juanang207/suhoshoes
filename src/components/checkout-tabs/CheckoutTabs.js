@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { ReactComponent as Check } from "../../images/check.svg";
 import "./CheckoutTabs.css";
 
@@ -6,7 +7,7 @@ class CheckoutTabs extends Component {
   render(props) {
     const CheckoutTab = (props) => {
       const done = props.completed && props.completed.includes(props.tabName);
-
+      const link = "/checkout-" + props.tabName.toLowerCase();
       return (
         <div
           className={`checkout-tab ${
@@ -14,7 +15,9 @@ class CheckoutTabs extends Component {
           } ${done ? "done" : ""}`}
         >
           <div className={`circle`}>{done ? <Check /> : props.step}</div>
-          <p>{props.tabName}</p>
+          {done ? <Link to={link} style={{ textDecoration: 'none' }}>
+            <p>{props.tabName}</p>
+          </Link> : <p>{props.tabName}</p>}
         </div>
       );
     };
