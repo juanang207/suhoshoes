@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "../../withRouter";
 import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
-import InputField from "../input-field/InputField";
+import FormField from "../form-field/FormField";
 import "./CheckoutShipping.css";
 
 class CheckoutShipping extends Component {
@@ -22,17 +22,7 @@ class CheckoutShipping extends Component {
   };
 
   render() {
-    const FormField = (props) => {
-      return (
-        <div className="shipping-form-field">
-          <label>
-            {props.labelName}
-            <InputField width={props.width} paddingLeft="10px" />
-          </label>
-        </div>
-      );
-    };
-
+  
     const DeliveryOption = (props) => {
       return (
         <div className="delivery-option">

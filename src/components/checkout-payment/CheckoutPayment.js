@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
+import FormField from "../form-field/FormField";
 import "./CheckoutPayment.css";
 
 class CheckoutPayment extends Component {
@@ -32,7 +33,7 @@ class CheckoutPayment extends Component {
                   src={require(`../../images/mastercard.png`)}
                   alt={`mastercard`}
                 />
-                </div>
+              </div>
             ) : (
               ""
             )}
@@ -74,8 +75,22 @@ class CheckoutPayment extends Component {
             ))}
           </div>
 
-          
-
+          <div className="creditcard-form">
+            <FormField labelName="Cardholder Full Name" width="323px" />
+            <FormField
+              labelName="Card Number"
+              width="323px"
+              boxType="credit-card"
+            />
+            <div className="creditcard-details">
+              <FormField labelName="Expiration Date" width="150.5px" />
+              <FormField
+                labelName="Security Code"
+                width="150.5px"
+                boxType="credit-card"
+              />
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -7,17 +7,6 @@
   text-transform: uppercase;
 }
 
-.shipping-form-field {
-  margin-top: 10px;
-}
-
-.shipping-form-field label {
-  color: var(--grey500);
-  font-size: 1rem;
-  font-weight: var(--regular);
-  margin-left: 20px;
-}
-
 .address-details {
   display: flex;
   justify-content: space-between;

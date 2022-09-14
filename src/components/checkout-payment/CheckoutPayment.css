@@ -28,3 +28,18 @@
 .creditcard-images img{
   margin-right: 5px;
 }
+
+.creditcard-form {
+  margin-top: 20px;
+}
+
+.creditcard-details {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.creditcard-details label {
+  margin-left: 0;
+}
