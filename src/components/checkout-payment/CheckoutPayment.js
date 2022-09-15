@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import FormField from "../form-field/FormField";
 import "./CheckoutPayment.css";
@@ -90,6 +91,18 @@ class CheckoutPayment extends Component {
                 boxType="credit-card"
               />
             </div>
+
+            <div className="billing-address">
+              <input type="checkbox" id="check-input" />
+
+              <label for="check-input">
+                My billing address is the same as my shipping address.
+              </label>
+            </div>
+          </div>
+
+          <div className="review-order-btn">
+            <ButtonItem text="Review Order" />
           </div>
         </div>
       </div>
