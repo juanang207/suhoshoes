@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import "./CheckoutReview.css";
 
@@ -31,6 +32,22 @@ class CheckoutReview extends Component {
           <div className="order-items">
             <h4>Order Item(s)</h4>
             <OrderItem />
+          </div>
+        </div>
+
+        <div className="payment-box">
+          <div className="payment-info">
+            <h4>Payment</h4>
+            <Link to="/checkout-payment" className="edit-btn">
+              Edit
+            </Link>
+            <div className="card-number">
+              <img src={require(`../../images/visa.png`)} alt={`visa`} />
+              <p>**** 2222</p>
+            </div>
+            <div className="credit-exp-date">
+              <p>02/27</p>
+            </div>
           </div>
         </div>
       </div>

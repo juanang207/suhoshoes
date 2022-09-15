@@ -60,3 +60,59 @@
   font-size: 0.875rem;
   color: var(--accent2);
 }
+
+.checkout-review .payment-box {
+  box-sizing: border-box;
+  width: 335px;
+  height: auto;
+  border: 2px solid var(--primary3);
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.payment-info {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.payment-info h4 {
+  font-size: 1.125rem;
+  color: var(--accent1);
+  font-weight: var(--medium);
+  width: 50%;
+}
+
+.payment-info p {
+  font-size: 1rem;
+  color: var(--grey500);
+  font-weight: var(--regular);
+}
+
+.edit-btn {
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: var(--regular);
+  color: var(--secondary2);
+  width: 50%;
+  text-align: right;
+}
+
+.payment-info .card-number {
+  display: flex;
+  width: 50%;
+  margin-top: 20px;
+}
+
+.payment-info .card-number img {
+  align-self: center;
+  margin-right: 5px;
+}
+
+.payment-info .credit-exp-date {
+  text-align: right;
+  width: 50%;
+  margin-top: 20px;
+}
