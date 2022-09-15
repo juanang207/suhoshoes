@@ -50,6 +50,23 @@ class CheckoutReview extends Component {
             </div>
           </div>
         </div>
+
+        <div className="shipping-address-box">
+          <div className="shipping-address-info">
+            <h4>Shipping Address</h4>
+            <Link to="/checkout-shipping" className="edit-shipping-btn">
+              Edit
+            </Link>
+            <div className="shipping-address">
+              <p>John Doe</p>
+              <p>123 Forest Dr</p>
+              <p>New York, NY 10003</p>
+            </div>
+          </div>
+        </div>
+
+
+        
       </div>
     );
   }

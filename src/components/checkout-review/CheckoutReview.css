@@ -116,3 +116,46 @@
   width: 50%;
   margin-top: 20px;
 }
+
+.checkout-review .shipping-address-box {
+  box-sizing: border-box;
+  width: 335px;
+  height: auto;
+  border: 2px solid var(--primary3);
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.shipping-address-info {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shipping-address-info  h4 {
+  font-size: 1.125rem;
+  color: var(--accent1);
+  font-weight: var(--medium);
+}
+
+.shipping-address-info .edit-shipping-btn {
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: var(--regular);
+  color: var(--secondary2);
+  text-align: right;
+}
+
+.shipping-address-info .shipping-address {
+  margin-top: 20px;
+}
+
+.shipping-address-info .shipping-address p {
+  font-size: 1rem;
+  color: var(--grey500);
+  font-weight: var(--regular);
+}
+
