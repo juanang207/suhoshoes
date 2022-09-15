@@ -1,54 +1,3 @@
-.checkout-tab {
-  display: flex;
-  align-items: center;
-}
-
-.checkout-tab .circle {
-  border-radius: 50%;
-  width: 24px;
-  line-height: 24px;
-  background-color: var(--secondary1);
-  color: var(--primary1);
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: var(--regular);
-}
-
-.checkout-tab p {
-  font-size: 0.875rem;
-  color: var(--accent2);
-  font-weight: var(--medium);
-  margin-left: 5px;
-}
-
-.checkout-tab.disabled .circle{
-  background-color: var(--primary2);
-}
-
-.checkout-tab.disabled p{
-  color: var(--grey200);
-}
-
-.checkout-tabs {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 3px 28px 17px 28px;
-}
-
-.checkout-tabs .separator {
-  height: 2px;
-  background-color: var(--primary2);
-  width: 10px;
-  border-radius: 99px;
-}
-
-.checkout-shipping hr {
-  height: 1px;
-  border: 0;
-  background: var(--primary2);
-}
-
 .shipping-form h3 {
   margin-top: 20px;
   margin-left: 20px;
@@ -56,17 +5,6 @@
   font-size: 1.5rem;
   font-weight: var(--medium);
   text-transform: uppercase;
-}
-
-.shipping-form-field {
-  margin-top: 10px;
-}
-
-.shipping-form-field label {
-  color: var(--grey500);
-  font-size: 1rem;
-  font-weight: var(--regular);
-  margin-left: 20px;
 }
 
 .address-details {

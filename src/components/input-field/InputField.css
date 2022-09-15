@@ -30,3 +30,7 @@
   background: transparent url("../../images/credit-card.svg") no-repeat right 10px center;
   background-size: 16px;
 }
+
+.input-box-parent .credit-card:focus {
+  background-image: none;
+}

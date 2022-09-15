@@ -1,0 +1,10 @@
+.form-field {
+  margin-top: 10px;
+}
+
+.form-field label {
+  color: var(--grey500);
+  font-size: 1rem;
+  font-weight: var(--regular);
+  margin-left: 20px;
+}
