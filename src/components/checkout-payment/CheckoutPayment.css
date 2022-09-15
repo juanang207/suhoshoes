@@ -44,7 +44,7 @@
   margin-left: 0;
 }
 
-.billing-address {
+.billing-address-checkbox {
   margin-right: 20px;
   margin-left: 20px;
   margin-top: 10px;
@@ -52,7 +52,7 @@
   align-items: center;
 }
 
-.billing-address label {
+.billing-address-checkbox label {
   font-size: 0.875rem;
   font-weight: var(--regular);
   color: var(--grey500);
@@ -65,7 +65,12 @@ input[type="checkbox"] {
   height: 15px;
 }
 
+.giftcard-form {
+  margin-top: 20px;
+}
+
 .review-order-btn {
   margin-top: 20px;
   text-align: center;
+  margin-bottom: 30px;
 }
