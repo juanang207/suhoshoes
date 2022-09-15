@@ -3,15 +3,15 @@ import { Routes, Route } from "react-router-dom";
 import Shopping from "../shopping/Shopping";
 import ShoeItem from "../shoe-item/ShoeItem";
 
-function NikeShoes() {
+function PumaShoes() {
   return (
     <div>
       <Routes>
-        <Route index element={<Shopping category="Nike Shoes" />} />
-        <Route path=":shoeId" element={<ShoeItem category="Nike"/>} />
+        <Route index element={<Shopping category="Puma Shoes" />} />
+        <Route path=":shoeId" element={<ShoeItem category="Puma"/>} />
       </Routes>
     </div>
   );
 }
 
-export default NikeShoes;
+export default PumaShoes;
