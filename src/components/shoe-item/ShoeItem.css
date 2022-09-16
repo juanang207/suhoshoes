@@ -10,6 +10,20 @@
   text-align: center;
 }
 
+select#shoe-sizes {
+  overflow:visible;
+  background-color: transparent;
+  border:none;
+  margin: 10px auto 0px 0px;
+  border-color:transparent;
+  display:block;
+  resize:none;
+}
+select#shoe-sizes:focus {
+box-shadow: none;
+outline: none;
+}
+
 .shoe-item h5 {
   font-size: 1rem;
   color: var(--grey200);
