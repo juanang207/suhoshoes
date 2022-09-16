@@ -1,0 +1,61 @@
+.confirmation-box:before { 
+  position: absolute;
+  content: '';
+  background: transparent url("../../images/check.svg") no-repeat center;
+  background-size: 24px;
+  width:54px;
+  height: 54px;
+  top: -30px;  
+  left: calc(50% - 27px);
+  background-color: var(--accent1);
+  border-radius: 50%;
+}
+.confirmation-box {
+  position: relative;
+  margin: 33px auto 0 auto;
+  width: 90%;
+  min-height: 192px;
+  border-radius: 10px;  
+  
+  background: radial-gradient(50px 50px at 50% -3px, rgba(40, 60, 101, 0) 31.5px, rgba(40, 60, 101, 1) 32.5px);
+
+}
+
+.confirmation-details {
+  text-align: center;
+  padding: 45px 20px 20px 20px;
+}
+
+.confirmation-details  .order-number {
+  color: var(--secondary1);
+  font-weight: var(--medium);
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+}
+
+.confirmation-details h4 {
+  color: var(--primary1);
+  font-weight: var(--medium);
+  font-size: 1.125rem;
+  margin-bottom: 12px;
+}
+
+.confirmation-details .confirmation-email {
+  color: var(--primary1);
+  font-weight: var(--regular);
+  font-size: 0.75rem;
+  margin-bottom: 12px;
+}
+
+.confirmation-details .delivery-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmation-details .delivery-date p {
+  margin-left: 5px;
+  color: var(--secondary1);
+  font-weight: var(--regular);
+  font-size: 0.75rem;
+}
