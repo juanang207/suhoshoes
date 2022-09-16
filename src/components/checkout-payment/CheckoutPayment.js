@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import FormField from "../form-field/FormField";
+import { withRouter } from "../../withRouter";
 import "./CheckoutPayment.css";
 
 class CheckoutPayment extends Component {
   constructor() {
     super();
+    this.goToCheckoutReview = this.goToCheckoutReview.bind(this);
     this.state = {
       paymentOptions: [
         { isSelected: true, name: "Credit Card" },
@@ -15,6 +17,10 @@ class CheckoutPayment extends Component {
       billingCheck: false,
     };
   }
+
+  goToCheckoutReview = () => {
+    this.props.navigate(`/checkout-review`);
+  };
 
   render() {
     const PaymentOption = (props) => {
@@ -141,7 +147,7 @@ class CheckoutPayment extends Component {
           )}
 
           <div className="review-order-btn">
-            <ButtonItem text="Review Order" />
+            <ButtonItem text="Review Order" onClick={this.goToCheckoutReview}/>
           </div>
         </div>
       </div>
@@ -149,4 +155,4 @@ class CheckoutPayment extends Component {
   }
 }
 
-export default CheckoutPayment;
+export default withRouter(CheckoutPayment);

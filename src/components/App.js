@@ -8,7 +8,9 @@ import Navbar from "./navbar/Navbar";
 import Bag from "./bag/Bag";
 import CheckoutShipping from "./checkout-shipping/CheckoutShipping";
 import CheckoutPayment from "./checkout-payment/CheckoutPayment";
+import CheckoutReview from "./checkout-review/CheckoutReview";
 import "./index.css";
+
 
 
 
@@ -26,6 +28,7 @@ class App extends Component {
             <Route path="bag" element={<Bag />} />
             <Route path="checkout-shipping" element={<CheckoutShipping />} />
             <Route path="checkout-payment" element={<CheckoutPayment />} />
+            <Route path="checkout-review" element={<CheckoutReview />} />
           </Route>
         </Routes>
       </div>
