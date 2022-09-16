@@ -5,7 +5,6 @@ const sneaks = new SneaksAPI();
 
 const nikeShoesJSON = []
 sneaks.getProducts("nike", 10, async function(err,products){
-  console.log(products)
   if (!err){
   for(let i = 0 ; i<products.length; i++){
     nikeShoesJSON.push(
@@ -23,7 +22,10 @@ sneaks.getProducts("nike", 10, async function(err,products){
         { "size": 9  },
         { "size": 9.5 },
         { "size": 10 }
-      ]
+      ],
+      "silhoutte": products[i].silhoutte,
+      "colorway": products[i].colorway,
+      "releaseDate": products[i].releaseDate,
     }
   )
   }

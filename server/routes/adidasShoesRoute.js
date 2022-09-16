@@ -22,8 +22,11 @@ sneaks.getProducts("adidas", 10, async function(err,products){
           { "size": 9  },
           { "size": 9.5 },
           { "size": 10 }
-        ]
-      }
+        ],
+      "silhoutte": products[i].silhoutte,
+      "colorway": products[i].colorway,
+      "releaseDate": products[i].releaseDate,
+    }
   )
   }
 }
