@@ -91,11 +91,7 @@
   font-weight: var(--regular);
 }
 
-.edit-btn {
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: var(--regular);
-  color: var(--secondary2);
+.payment-edit-btn {
   width: 50%;
   text-align: right;
 }
@@ -141,7 +137,7 @@
   font-weight: var(--medium);
 }
 
-.shipping-address-info .edit-shipping-btn {
+.link-btn {
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: var(--regular);
@@ -159,3 +155,51 @@
   font-weight: var(--regular);
 }
 
+.order-summary-box {
+  box-sizing: border-box;
+  width: 335px;
+  height: auto;
+  background-color: var(--primary2);
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.order-summary-info {
+  padding: 20px;
+}
+
+.order-summary-info  h4 {
+  font-size: 1.125rem;
+  color: var(--accent1);
+  font-weight: var(--medium);
+}
+
+.order-summary-box .order-summary-details {
+  display: grid;
+  margin-top: 20px;
+  grid-template-columns: 2fr 1fr;
+}
+
+.order-summary-box .order-summary-details p {
+  font-size: 1rem;
+  color: var(--accent2);
+  font-weight: var(--regular);
+  margin-bottom: 10px;
+}
+
+.order-summary-box .order-summary-details .right-align {
+  text-align: right;
+}
+
+.order-summary-box .order-summary-details .order-total {
+  font-weight: var(--semibold);
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.place-order-btn {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}

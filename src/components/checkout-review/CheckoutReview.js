@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import "./CheckoutReview.css";
 
@@ -38,9 +39,11 @@ class CheckoutReview extends Component {
         <div className="payment-box">
           <div className="payment-info">
             <h4>Payment</h4>
-            <Link to="/checkout-payment" className="edit-btn">
-              Edit
-            </Link>
+            <div className="payment-edit-btn">
+              <Link to="/checkout-payment" className="link-btn">
+                Edit
+              </Link>
+            </div>
             <div className="card-number">
               <img src={require(`../../images/visa.png`)} alt={`visa`} />
               <p>**** 2222</p>
@@ -54,9 +57,11 @@ class CheckoutReview extends Component {
         <div className="shipping-address-box">
           <div className="shipping-address-info">
             <h4>Shipping Address</h4>
-            <Link to="/checkout-shipping" className="edit-shipping-btn">
-              Edit
-            </Link>
+            <div className="edit-shipping-btn">
+              <Link to="/checkout-shipping" className="link-btn">
+                Edit
+              </Link>
+            </div>
             <div className="shipping-address">
               <p>John Doe</p>
               <p>123 Forest Dr</p>
@@ -65,8 +70,27 @@ class CheckoutReview extends Component {
           </div>
         </div>
 
+        <div className="order-summary-box">
+          <div className="order-summary-info">
+            <h4>Order Summary</h4>
 
-        
+            <div className="order-summary-details">
+              <p>Subtotal</p>
+              <p className="right-align">$100.00</p>
+              <p>Shipping (USPS Ground)</p>
+              <p className="right-align">$5.99</p>
+              <p>Sales Tax</p>
+              <p className="right-align">-</p>
+              <p className="order-total">Total</p>
+              <p className="order-total right-align">{`$105.99`}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="place-order-btn">
+        <ButtonItem text="Place Order"/>
+        </div>
+
       </div>
     );
   }
