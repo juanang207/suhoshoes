@@ -11,7 +11,7 @@ class ShoeCard extends Component {
         <img src={image} alt={name} />
         <div className="shoe-info">
           <h5>{name}</h5>
-          <p>{price}</p>
+          <p>${price}</p>
         </div>
       </div>
     );

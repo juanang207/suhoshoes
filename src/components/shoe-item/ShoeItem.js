@@ -49,7 +49,7 @@ function ShoeItem(props) {
         .get(`http://localhost:4000/api/nike-shoes`)
         .then((response) => {
           let shoesArray = response.data;
-          let shoe = shoesArray.filter((shoe) => shoe.id);
+          let shoe = shoesArray.filter((shoe) => shoe.id) === id;
           setShoeData(shoe);
           return shoe;
         })
@@ -65,7 +65,7 @@ function ShoeItem(props) {
         .get(`http://localhost:4000/api/puma-shoes`)
         .then((response) => {
           let shoesArray = response.data;
-          let shoe = shoesArray.filter((shoe) => shoe.id);
+          let shoe = shoesArray.filter((shoe) => shoe.id === id);
           setShoeData(shoe);
           return shoe;
         })
@@ -81,7 +81,7 @@ function ShoeItem(props) {
         .get(`http://localhost:4000/api/adidas-shoes`)
         .then((response) => {
           let shoesArray = response.data;
-          let shoe = shoesArray.filter((shoe) => shoe.id);
+          let shoe = shoesArray.filter((shoe) => shoe.id === id);
           setShoeData(shoe);
           return shoe;
         })
@@ -98,6 +98,8 @@ function ShoeItem(props) {
     findShoeData(shoeId);
 
   }, [shoeId]);
+
+  console.log(shoeData)
 
   const InformationSection = (props) => {
     return (
@@ -203,7 +205,7 @@ function ShoeItem(props) {
           <div className="item-name-section">
             <div>
               <h4>{shoeData[0].name}</h4>
-              <h4 className="shoe-item-price">{shoeData[0].price}</h4>
+              <h4 className="shoe-item-price">${shoeData[0].price}</h4>
             </div>
             <div className="reviews">
               <h5>
