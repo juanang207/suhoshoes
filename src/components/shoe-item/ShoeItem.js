@@ -9,7 +9,6 @@ import ButtonItem from "../button-item/ButtonItem";
 import "./ShoeItem.css";
 
 function ShoeItem(props) {
-
   // the shoe id from the url
   const { shoeId } = useParams();
 
@@ -23,7 +22,7 @@ function ShoeItem(props) {
     },
     {
       title: "Product Details",
-      info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fames aliquet lacus netus faucibus lobortis. Egestas laoreet ultrices sed vitae morbi lectus. Viverra volutpat, fermentum, enim viverra quisque mauris, donec diam sapien.",
+      info: {},
       open: false,
     },
     {
@@ -44,62 +43,60 @@ function ShoeItem(props) {
   useEffect(() => {
     // get the shoes data and finds matching shoe with id
     const findShoeData = async (id) => {
-      if (props.category === "nike"){
-      await axios
-        .get(`http://localhost:4000/api/nike-shoes`)
-        .then((response) => {
-          let shoesArray = response.data;
-          let shoe = shoesArray.filter((shoe) => shoe.id) === id;
-          setShoeData(shoe);
-          return shoe;
-        })
-        .then((shoe) => {
-          // create copy of the shoe sizes from shoeData
-          setShoeSizes(shoe[0].sizes);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      if (props.category === "nike") {
+        await axios
+          .get(`http://localhost:4000/api/nike-shoes`)
+          .then((response) => {
+            let shoesArray = response.data;
+            let shoe = shoesArray.filter((shoe) => shoe.id) === id;
+            setShoeData(shoe);
+            return shoe;
+          })
+          .then((shoe) => {
+            // create copy of the shoe sizes from shoeData
+            setShoeSizes(shoe[0].sizes);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       } else if (props.category === "Puma") {
         await axios
-        .get(`http://localhost:4000/api/puma-shoes`)
-        .then((response) => {
-          let shoesArray = response.data;
-          let shoe = shoesArray.filter((shoe) => shoe.id === id);
-          setShoeData(shoe);
-          return shoe;
-        })
-        .then((shoe) => {
-          // create copy of the shoe sizes from shoeData
-          setShoeSizes(shoe[0].sizes);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+          .get(`http://localhost:4000/api/puma-shoes`)
+          .then((response) => {
+            let shoesArray = response.data;
+            let shoe = shoesArray.filter((shoe) => shoe.id === id);
+            setShoeData(shoe);
+            return shoe;
+          })
+          .then((shoe) => {
+            // create copy of the shoe sizes from shoeData
+            setShoeSizes(shoe[0].sizes);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       } else if (props.category === "Adidas") {
         await axios
-        .get(`http://localhost:4000/api/adidas-shoes`)
-        .then((response) => {
-          let shoesArray = response.data;
-          let shoe = shoesArray.filter((shoe) => shoe.id === id);
-          setShoeData(shoe);
-          return shoe;
-        })
-        .then((shoe) => {
-          // create copy of the shoe sizes from shoeData
-          setShoeSizes(shoe[0].sizes);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+          .get(`http://localhost:4000/api/adidas-shoes`)
+          .then((response) => {
+            let shoesArray = response.data;
+            let shoe = shoesArray.filter((shoe) => shoe.id === id);
+            setShoeData(shoe);
+            return shoe;
+          })
+          .then((shoe) => {
+            // create copy of the shoe sizes from shoeData
+            setShoeSizes(shoe[0].sizes);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       }
     };
 
     findShoeData(shoeId);
-
   }, [shoeId]);
 
-  console.log(shoeData)
 
   const InformationSection = (props) => {
     return (
@@ -114,7 +111,15 @@ function ShoeItem(props) {
             <Arrow width={18} height={10} className="arrow" />
           </div>
           <div className="info-body">
-            <p>{props.infoSection.info}</p>
+            {props.infoSection.title === "Product Details" ? (
+              <>
+                <p>Silhoutte: {props.infoSection.info.silhoutte}</p>
+                <p>Colorway: {props.infoSection.info.colorway}</p>
+                <p>Release Date: {props.infoSection.info.releaseDate}</p>
+              </>
+            ) : (
+              <p>{props.infoSection.info}</p>
+            )}
           </div>
         </div>
         <hr />
@@ -131,6 +136,22 @@ function ShoeItem(props) {
           infoSection.open = false;
         }
         return infoSection;
+      })
+    );
+
+    // generate product details
+    setInfoSection(
+      [...infoSection].map((object) => {
+        if (object.title === "Product Details") {
+          return {
+            ...object,
+            info: {
+              colorway: shoeData[0].colorway,
+              releaseDate: shoeData[0].releaseDate,
+              silhoutte: shoeData[0].silhoutte,
+            },
+          };
+        } else return object;
       })
     );
   };
@@ -151,11 +172,11 @@ function ShoeItem(props) {
     );
   };
 
-  let navigate = useNavigate(); 
-  const goToBag = () =>{ 
-    let path = `/bag`; 
+  let navigate = useNavigate();
+  const goToBag = () => {
+    let path = `/bag`;
     navigate(path);
-  }
+  };
 
   // Doesn't work with transitions
   // const AddToBag = (props) => {
@@ -195,8 +216,7 @@ function ShoeItem(props) {
       {shoeData.length && (
         <div className="shoe-item">
           <img
-            src={
-              shoeData[0].image}
+            src={shoeData[0].image}
             alt={shoeData[0].name}
             className="product-img"
           />
@@ -220,7 +240,7 @@ function ShoeItem(props) {
             <h4>Size</h4>
             <a href="#">Size Chart</a>
           </div>
-          
+
           {/* Size Selection Buttons */}
           <div className="size-selection">
             {shoeSizes &&
@@ -244,7 +264,7 @@ function ShoeItem(props) {
           </div>
 
           <hr />
-          
+
           {/* Information Section */}
           <div className="whole-info-section">
             {infoSection.map((infoSection, i) => (
@@ -256,7 +276,7 @@ function ShoeItem(props) {
               />
             ))}
           </div>
-          
+
           {/* background overlay when add to bag popup is active */}
           <div
             className={`background-overlay ${clicked ? "active" : ""}`}
@@ -290,7 +310,7 @@ function ShoeItem(props) {
             </div>
             <div className="popup-btns">
               <div className="view-bag-btn">
-                <ButtonItem text="view bag" onClick={goToBag}/>
+                <ButtonItem text="view bag" onClick={goToBag} />
               </div>
               <ButtonItem
                 text="continue shopping"
@@ -299,9 +319,6 @@ function ShoeItem(props) {
               />
             </div>
           </div>
-
-
-
         </div>
       )}
     </div>

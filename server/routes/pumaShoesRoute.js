@@ -21,7 +21,10 @@ sneaks.getProducts("puma", 10, async function(err,products){
         { "size": 9, "selected": false },
         { "size": 9.5, "selected": false },
         { "size": 10, "selected": false }
-      ]
+      ],
+      "silhoutte": products[i].silhoutte,
+      "colorway": products[i].colorway,
+      "releaseDate": products[i].releaseDate,
     }
   )
   }
