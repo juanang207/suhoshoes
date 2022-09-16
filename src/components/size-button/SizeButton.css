@@ -1,4 +1,4 @@
-.size-button button {
+option#size-option {
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -7,7 +7,18 @@
   font-size: 1rem;
   font-weight: var(--regular);
   color: var(--accent1);
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid;
+  margin: 3px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: normal;
+  /* padding: 7px 10px; */
 }
+
+
 
 .size-button .filled {
   background-color: var(--secondary1);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ReactComponent as Star } from "../../images/Star.svg";
@@ -18,7 +18,7 @@ function ShoeItem(props) {
   const [infoSection, setInfoSection] = useState([
     {
       title: "Description",
-      info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fames aliquet lacus netus faucibus lobortis. Egestas laoreet ultrices sed vitae morbi lectus. Viverra volutpat, fermentum, enim viverra quisque mauris, donec diam sapien.",
+      info: shoeData.description,
       open: false,
     },
     {
@@ -44,7 +44,7 @@ function ShoeItem(props) {
   useEffect(() => {
     // get the shoes data and finds matching shoe with id
     const findShoeData = async (id) => {
-      if (props.category === "nike"){
+      if (props.category === "Nike"){
       await axios
         .get(`http://localhost:4000/api/nike-shoes`)
         .then((response) => {
@@ -97,7 +97,7 @@ function ShoeItem(props) {
 
     findShoeData(shoeId);
 
-  }, [shoeId]);
+  },[props.category, shoeId]);
 
   const InformationSection = (props) => {
     return (
@@ -133,21 +133,21 @@ function ShoeItem(props) {
     );
   };
 
-  const toggleSelected = (index) => {
-    // checks which size is selected and toggle off the unselected sizes
-    setShoeSizes(
-      shoeSizes.map((size, i) => {
-        if (i === index) {
-          size.selected = !size.selected;
-          // updates the currently selected size
-          setSelectedSize(size.size);
-        } else {
-          size.selected = false;
-        }
-        return size;
-      })
-    );
-  };
+  // const toggleSelected = (index) => {
+  //   // checks which size is selected and toggle off the unselected sizes
+  //   setShoeSizes(
+  //     shoeSizes.map((size, i) => {
+  //       if (i === index) {
+  //         size.selected = !size.selected;
+  //         // updates the currently selected size
+  //         setSelectedSize(size.size);
+  //       } else {
+  //         size.selected = false;
+  //       }
+  //       return size;
+  //     })
+  //   );
+  // };
 
   let navigate = useNavigate(); 
   const goToBag = () =>{ 
@@ -221,17 +221,19 @@ function ShoeItem(props) {
           
           {/* Size Selection Buttons */}
           <div className="size-selection">
+          <select id="shoe-sizes" multiple="multiple">
             {shoeSizes &&
               shoeSizes.map((size, i) => {
                 return (
                   <SizeButton
                     sizeObj={size}
                     index={i}
-                    toggleSelected={toggleSelected}
+                    // toggleSelected={toggleSelected}
                     key={i}
                   />
                 );
               })}
+              </select>
           </div>
 
           <div className="add-to-bag-btn">
@@ -282,7 +284,7 @@ function ShoeItem(props) {
               />
               <div className="popup-product-info-text">
                 <h4>{shoeData[0].name}</h4>
-                <p>Size: {selectedSize} (Men's)</p>
+                <p>Size: {selectedSize} ({props.category})</p>
                 <h5>{shoeData[0].price}</h5>
               </div>
             </div>
