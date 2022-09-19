@@ -7,13 +7,15 @@ import ButtonItem from "../button-item/ButtonItem";
 import "./Bag.css";
 
 function Bag(props) {
-  const [quantitySelected, setQuantitySelected] = useState(1);
+  // const [quantitySelected, setQuantitySelected] = useState(1);
 
   let navigate = useNavigate();
   const goToCheckoutShipping = () => {
     let path = `/checkout-shipping`;
     navigate(path);
   };
+
+  let quantitySelected = 1;
 
   // get bag items from local storage
   let bagItems = JSON.parse(localStorage.getItem("bagItems"));
@@ -23,7 +25,8 @@ function Bag(props) {
   // console.log(location.state.shoe);
 
   const changeSelection = (quantity) => {
-    setQuantitySelected(quantity.value);
+    quantitySelected = quantity;
+    // setQuantitySelected(quantity.value);
   };
 
   const BagItem = (props) => {
@@ -54,7 +57,7 @@ function Bag(props) {
                 <Select
                   options={options}
                   onChange={(quantity) => changeSelection(quantity)}
-                  placeholder={quantitySelected}
+                  placeholder={shoe.qty}
                   components={{
                     IndicatorSeparator: () => null,
                   }}

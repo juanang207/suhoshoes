@@ -216,7 +216,20 @@ function ShoeItem(props) {
   const addItemToBag = () => {
     setClicked(!clicked);
     let arrayBagItems = JSON.parse(localStorage.getItem("bagItems") || "[]");
-    arrayBagItems.push(shoeData[0]);
+
+    // check if shoe added is already in bag
+    const found = arrayBagItems.some(el => el.id === shoeData[0].id);
+
+    if (found) {
+      // increase qty if already added to bag
+      let objIndex = arrayBagItems.findIndex((obj => obj.id === shoeData[0].id));
+      arrayBagItems[objIndex].qty+=1;
+    } 
+    else {
+      // add to bag
+      arrayBagItems.push({...shoeData[0], "qty" : 1});
+    }
+    
     localStorage.setItem("bagItems", JSON.stringify(arrayBagItems));
   };
 
