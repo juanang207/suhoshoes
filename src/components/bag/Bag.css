@@ -19,9 +19,12 @@
   display: flex;
   align-items: center;
   position: relative;
+  margin-bottom: 20px;
 }
 
 .bag-item img {
+  width: 140px;
+  height: auto;
   border-radius: 20px;
   margin: 15px 0px 15px 15px;
 }

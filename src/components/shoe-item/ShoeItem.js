@@ -212,6 +212,14 @@ function ShoeItem(props) {
   //   );
   // };
 
+  // after clicking on ADD TO BAG btn, opens popup and add shoe to localstorage
+  const addItemToBag = () => {
+    setClicked(!clicked);
+    let arrayBagItems = JSON.parse(localStorage.getItem("bagItems") || "[]");
+    arrayBagItems.push(shoeData[0]);
+    localStorage.setItem("bagItems", JSON.stringify(arrayBagItems));
+  };
+
   return (
     <div>
       {shoeData.length && (
@@ -262,7 +270,7 @@ function ShoeItem(props) {
           <div className="add-to-bag-btn">
             <ButtonItem
               text="add to bag"
-              onClick={() => setClicked(!clicked)}
+              onClick={() => addItemToBag()}
             />
           </div>
 
@@ -319,6 +327,7 @@ function ShoeItem(props) {
                 text="continue shopping"
                 color="var(--accent1)"
                 backgroundColor="var(--primary1)"
+                onClick={() => setClicked(!clicked)}
               />
             </div>
           </div>

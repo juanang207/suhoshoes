@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as Close } from "../../images/close.svg";
@@ -12,36 +12,42 @@ function Bag(props) {
   let navigate = useNavigate();
   const goToCheckoutShipping = () => {
     let path = `/checkout-shipping`;
-    navigate(path, { state: { id: 1, name: "sabaoon" } });
+    navigate(path);
   };
 
+  // get bag items from local storage
+  let bagItems = JSON.parse(localStorage.getItem("bagItems"));
+
+  // gets the state from previous page (view bag btn from add to bag popup)
   // const location = useLocation();
-  // console.log(location.state.name);
+  // console.log(location.state.shoe);
 
   const changeSelection = (quantity) => {
     setQuantitySelected(quantity.value);
   };
 
-  const BagItem = () => {
+  const BagItem = (props) => {
     // create array of objects of label and value from 1 to 10 for dropdown quantity
     const options = [...new Array(10)].map((each, index) => ({
       label: index + 1,
       value: index + 1,
     }));
 
+    const {shoe} = props;
+
     return (
       <div className="bag-item">
         <img
-          src={require(`../../images/shoes-img-thumbnail.jpg`)}
-          alt={`shoe`}
+          src={shoe.image}
+          alt={shoe.name}
         />
 
         <div className="item-details">
-          <p className="shoe-name">Continental 80</p>
+          <p className="shoe-name">{shoe.name}</p>
           <p className="shoe-size">Size: 7.5 (Men's)</p>
 
           <div className="item-details-price-qty">
-            <p>$100.00</p>
+            <p>${shoe.price}</p>
             <div className="quantity">
               <p>Qty:</p>
               <div className="dropdown">
@@ -117,7 +123,9 @@ function Bag(props) {
       <h3>Bag</h3>
 
       <div className="bag-items">
-        <BagItem />
+        {bagItems.map((shoe, i) => {
+          return <BagItem key={i} shoe={shoe}/>;
+        })}
       </div>
 
       <div className="promo-code">
