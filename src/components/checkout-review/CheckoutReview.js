@@ -2,9 +2,20 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
+import { withRouter } from "../../withRouter";
 import "./CheckoutReview.css";
 
 class CheckoutReview extends Component {
+
+  constructor() {
+    super();
+    this.goToCheckoutConfirmation = this.goToCheckoutConfirmation.bind(this);
+  }
+
+  goToCheckoutConfirmation = () => {
+    this.props.navigate(`/checkout-confirmation`);
+  };
+
   render() {
     const OrderItem = (props) => {
       return (
@@ -88,7 +99,7 @@ class CheckoutReview extends Component {
         </div>
 
         <div className="place-order-btn">
-        <ButtonItem text="Place Order"/>
+        <ButtonItem text="Place Order" onClick={this.goToCheckoutConfirmation}/>
         </div>
 
       </div>
@@ -96,4 +107,4 @@ class CheckoutReview extends Component {
   }
 }
 
-export default CheckoutReview;
+export default withRouter(CheckoutReview);
