@@ -4,9 +4,9 @@ import "./SizeButton.css";
 class SizeButton extends Component {
 
   render() {
-    const { sizeObj, index } = this.props;
+    const { sizeObj,index} = this.props;
     return (
-        <option id ="size-option" value = {index}>
+        <option id ={index} value = {sizeObj.size} key= {index} >
         {sizeObj.size}
         </option>
     );

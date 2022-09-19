@@ -96,8 +96,16 @@ function ShoeItem(props) {
 
     findShoeData(shoeId);
     
-  },[props.category, shoeId]);
+  },[props.category, shoeId, selectedSize]);
 
+  const updateSelectedSize = () => {
+    var size = document.getElementById("shoe-sizes")
+    if (size){
+      // console.log(size.options[size.selectedIndex].text)
+      var selectedShoeSize = size.options[size.selectedIndex].text
+      setSelectedSize(selectedShoeSize)
+    }
+  }
 
   const InformationSection = (props) => {
     return (
@@ -113,11 +121,11 @@ function ShoeItem(props) {
           </div>
           <div className="info-body">
             {props.infoSection.title === "Product Details" ? (
-              <>
+              <div>
                 <p>Silhoutte: {props.infoSection.info.silhoutte}</p>
                 <p>Colorway: {props.infoSection.info.colorway}</p>
                 <p>Release Date: {props.infoSection.info.releaseDate}</p>
-              </>
+              </div>
             ) : (
               <p>{props.infoSection.info}</p>
             )}
@@ -156,22 +164,6 @@ function ShoeItem(props) {
       })
     );
   };
-
-  // const toggleSelected = (index) => {
-  //   // checks which size is selected and toggle off the unselected sizes
-  //   setShoeSizes(
-  //     shoeSizes.map((size, i) => {
-  //       if (i === index) {
-  //         size.selected = !size.selected;
-  //         // updates the currently selected size
-  //         setSelectedSize(size.size);
-  //       } else {
-  //         size.selected = false;
-  //       }
-  //       return size;
-  //     })
-  //   );
-  // };
 
   let navigate = useNavigate();
   const goToBag = () => {
@@ -244,15 +236,13 @@ function ShoeItem(props) {
 
           {/* Size Selection Buttons */}
           <div className="size-selection">
-          <select id="shoe-sizes" multiple="multiple">
+          <select id="shoe-sizes" multiple="multiple" onChange={updateSelectedSize}>
             {shoeSizes &&
               shoeSizes.map((size, i) => {
                 return (
                   <SizeButton
                     sizeObj={size}
-                    index={i}
-                    // toggleSelected={toggleSelected}
-                    key={i}
+                    index = {i}
                   />
                 );
               })}
