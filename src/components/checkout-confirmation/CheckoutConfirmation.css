@@ -59,3 +59,8 @@
   font-weight: var(--regular);
   font-size: 0.75rem;
 }
+
+.continue-shopping-btn {
+  margin-top: 30px;
+  text-align: center;
+}
