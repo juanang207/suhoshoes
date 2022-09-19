@@ -145,7 +145,7 @@ function Bag(props) {
     let itemsPrice = 0;
     bagItems.forEach((shoe) => (itemsPrice += shoe.qty * shoe.price));
     setItemsPrice(itemsPrice);
-  }
+  };
 
   return (
     <div className="bag">
@@ -170,15 +170,15 @@ function Bag(props) {
 
         <div className="order-details">
           <p>{numItems} Item(s)</p>
-          <p className="right-align">{`$${itemsPrice.toFixed(
-            2
-          )}`}</p>
+          <p className="right-align">{`$${itemsPrice.toFixed(2)}`}</p>
           <p>Shipping</p>
           <p className="right-align">$5.99</p>
           <p>Sales Tax</p>
           <p className="right-align">-</p>
           <p className="order-total">Total</p>
-          <p className="order-total right-align">{`$105.99`}</p>
+          <p className="order-total right-align">
+            ${(itemsPrice + 5.99).toFixed(2)}
+          </p>
         </div>
       </div>
 
