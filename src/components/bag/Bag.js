@@ -24,10 +24,7 @@ function Bag(props) {
   // const location = useLocation();
   // console.log(location.state.shoe);
 
-  const changeSelection = (quantity) => {
-    quantitySelected = quantity;
-    // setQuantitySelected(quantity.value);
-  };
+ 
 
   const BagItem = (props) => {
     // create array of objects of label and value from 1 to 10 for dropdown quantity
@@ -37,6 +34,14 @@ function Bag(props) {
     }));
 
     const {shoe} = props;
+
+    const changeSelection = (quantity) => {
+      // update the qty in local storage
+      let objIndex = bagItems.findIndex((obj => obj.id === shoe.id));
+      bagItems[objIndex].qty = quantity.value;
+
+      localStorage.setItem("bagItems", JSON.stringify(bagItems));
+    };
 
     return (
       <div className="bag-item">
