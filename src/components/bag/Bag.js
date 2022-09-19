@@ -20,11 +20,21 @@ function Bag(props) {
   // get bag items from local storage
   let bagItems = JSON.parse(localStorage.getItem("bagItems"));
 
+  // get number of items
+  let numItem = 0;
+  bagItems.forEach((shoe) => (numItem += shoe.qty));
+
+  // total quantity
+  const [numItems, setNumItems] = useState(numItem);
+
+  // price of all items
+  let itemPrice = 0;
+  bagItems.forEach((shoe) => (itemPrice += shoe.qty * shoe.price));
+  const [itemsPrice, setItemsPrice] = useState(itemPrice);
+
   // gets the state from previous page (view bag btn from add to bag popup)
   // const location = useLocation();
   // console.log(location.state.shoe);
-
- 
 
   const BagItem = (props) => {
     // create array of objects of label and value from 1 to 10 for dropdown quantity
@@ -33,22 +43,21 @@ function Bag(props) {
       value: index + 1,
     }));
 
-    const {shoe} = props;
+    const { shoe } = props;
 
     const changeSelection = (quantity) => {
       // update the qty in local storage
-      let objIndex = bagItems.findIndex((obj => obj.id === shoe.id));
+      let objIndex = bagItems.findIndex((obj) => obj.id === shoe.id);
       bagItems[objIndex].qty = quantity.value;
 
       localStorage.setItem("bagItems", JSON.stringify(bagItems));
+      updateNumOfItems();
+      updateItemsPrice();
     };
 
     return (
       <div className="bag-item">
-        <img
-          src={shoe.image}
-          alt={shoe.name}
-        />
+        <img src={shoe.image} alt={shoe.name} />
 
         <div className="item-details">
           <p className="shoe-name">{shoe.name}</p>
@@ -126,13 +135,25 @@ function Bag(props) {
     );
   };
 
+  const updateNumOfItems = () => {
+    let numItem = 0;
+    bagItems.forEach((shoe) => (numItem += shoe.qty));
+    setNumItems(numItem);
+  };
+
+  const updateItemsPrice = () => {
+    let itemsPrice = 0;
+    bagItems.forEach((shoe) => (itemsPrice += shoe.qty * shoe.price));
+    setItemsPrice(itemsPrice);
+  }
+
   return (
     <div className="bag">
       <h3>Bag</h3>
 
       <div className="bag-items">
         {bagItems.map((shoe, i) => {
-          return <BagItem key={i} shoe={shoe}/>;
+          return <BagItem key={i} shoe={shoe} />;
         })}
       </div>
 
@@ -148,8 +169,8 @@ function Bag(props) {
         <h4>Order Summary</h4>
 
         <div className="order-details">
-          <p>{quantitySelected} Item(s)</p>
-          <p className="right-align">{`$${(quantitySelected * 100).toFixed(
+          <p>{numItems} Item(s)</p>
+          <p className="right-align">{`$${itemsPrice.toFixed(
             2
           )}`}</p>
           <p>Shipping</p>
