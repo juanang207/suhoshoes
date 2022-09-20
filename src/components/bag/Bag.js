@@ -15,7 +15,7 @@ function Bag(props) {
     navigate(path);
   };
 
-  let quantitySelected = 1;
+  // let quantitySelected = 1;
 
   // get bag items from local storage
   let bagItems = JSON.parse(localStorage.getItem("bagItems"));
@@ -23,14 +23,15 @@ function Bag(props) {
   // get number of items
   let numItem = 0;
   bagItems.forEach((shoe) => (numItem += shoe.qty));
-
   // total quantity
   const [numItems, setNumItems] = useState(numItem);
+
 
   // price of all items
   let itemPrice = 0;
   bagItems.forEach((shoe) => (itemPrice += shoe.qty * shoe.price));
   const [itemsPrice, setItemsPrice] = useState(itemPrice);
+  localStorage.setItem("subtotal", JSON.stringify(itemsPrice));
 
   // gets the state from previous page (view bag btn from add to bag popup)
   // const location = useLocation();
@@ -145,6 +146,7 @@ function Bag(props) {
     let itemsPrice = 0;
     bagItems.forEach((shoe) => (itemsPrice += shoe.qty * shoe.price));
     setItemsPrice(itemsPrice);
+    localStorage.setItem("subtotal", JSON.stringify(itemsPrice));
   };
 
   return (
