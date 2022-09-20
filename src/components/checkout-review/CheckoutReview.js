@@ -34,6 +34,12 @@ function CheckoutReview() {
     );
   };
 
+  const placeOrder = () => {
+    localStorage.removeItem("bagItems");
+    localStorage.removeItem("subtotal");
+    goToCheckoutConfirmation();
+  }
+
   return (
     <div className="checkout-review">
       <CheckoutTabs page="Review" completed={["Shipping", "Payment"]} />
@@ -100,7 +106,7 @@ function CheckoutReview() {
       </div>
 
       <div className="place-order-btn">
-        <ButtonItem text="Place Order" onClick={goToCheckoutConfirmation} />
+        <ButtonItem text="Place Order" onClick={placeOrder} />
       </div>
     </div>
   );

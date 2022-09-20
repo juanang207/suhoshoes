@@ -18,7 +18,7 @@ function Bag(props) {
   // let quantitySelected = 1;
 
   // get bag items from local storage
-  let bagItems = JSON.parse(localStorage.getItem("bagItems"));
+  let bagItems = JSON.parse(localStorage.getItem("bagItems") || "[]");
 
   // get number of items
   let numItem = 0;
@@ -164,9 +164,13 @@ function Bag(props) {
       <h3>Bag</h3>
 
       <div className="bag-items">
-        {bagItems.map((shoe, i) => {
-          return <BagItem key={i} shoe={shoe} />;
-        })}
+        {bagItems.length > 0 ? (
+          bagItems.map((shoe, i) => {
+            return <BagItem key={i} shoe={shoe} />;
+          })
+        ) : (
+          <h4 className="empty-bag">Bag is currently empty</h4>
+        )}
       </div>
 
       <div className="promo-code">
