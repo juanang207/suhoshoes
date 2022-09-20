@@ -25,7 +25,7 @@ function CheckoutReview() {
         />
         <div className="order-item-details">
           <h5>{shoe.name} </h5>
-          <p>Size: 7.5 (Men's)</p>
+          <p>Size: {shoe.size}</p>
         </div>
         <div className="order-item-quantity">
           <p>Qty: {shoe.qty}</p>

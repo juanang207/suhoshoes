@@ -214,7 +214,7 @@ function ShoeItem(props) {
     
 
     // check if shoe added is already in bag
-    const found = arrayBagItems.some(el => el.id === shoeData[0].id);
+    const found = arrayBagItems.some(el => (el.id === shoeData[0].id) && (el.size === selectedSize));
 
     if (found) {
       // increase qty if already added to bag
@@ -223,7 +223,7 @@ function ShoeItem(props) {
     } 
     else {
       // add to bag
-      arrayBagItems.push({...shoeData[0], "qty" : 1, "path" : location.pathname});
+      arrayBagItems.push({...shoeData[0], "qty" : 1, "path" : location.pathname, "size" : selectedSize});
     }
     
     localStorage.setItem("bagItems", JSON.stringify(arrayBagItems));

@@ -56,7 +56,7 @@ function Bag(props) {
     };
 
     const removeItemInCart = () => {
-      let objIndex = bagItems.findIndex((obj) => obj.id === shoe.id);
+      let objIndex = bagItems.findIndex((obj) => (obj.id === shoe.id) && (obj.size === shoe.size));
       bagItems.splice(objIndex, 1);
       localStorage.setItem("bagItems", JSON.stringify(bagItems));
       updateNumOfItems();
@@ -71,7 +71,7 @@ function Bag(props) {
           <Link to={`${shoe.path}`}>
             <p className="shoe-name">{shoe.name}</p>
           </Link>
-          <p className="shoe-size">Size: 7.5 (Men's)</p>
+          <p className="shoe-size">Size: {shoe.size}</p>
 
           <div className="item-details-price-qty">
             <p>${shoe.price}</p>
