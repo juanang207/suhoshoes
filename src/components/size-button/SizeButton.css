@@ -18,14 +18,10 @@ option {
   line-height: normal;
   padding: 10px 10px 1px;
 }
-
-option div{
-text-align: center;
-}
-
-option:focus-visible{
-  font-size: large;
-  background-color:yellow;
+option:checked{
+  background-color: #fdb53f;
+  border: none;
+  color: white;
 }
 
 
