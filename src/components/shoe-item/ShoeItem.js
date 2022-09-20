@@ -229,6 +229,11 @@ function ShoeItem(props) {
     localStorage.setItem("bagItems", JSON.stringify(arrayBagItems));
   };
 
+  const closeAddToBagPopup = () => {
+    setClicked(!clicked);
+    setSelectedSize(-1);
+  }
+
   return (
     <div>
       {shoeData.length && (
@@ -268,6 +273,7 @@ function ShoeItem(props) {
                   <SizeButton
                     sizeObj={size}
                     index = {i}
+                    key={i}
                   />
                 );
               })}
@@ -278,6 +284,7 @@ function ShoeItem(props) {
             <ButtonItem
               text="add to bag"
               onClick={() => addItemToBag()}
+              disabled = {selectedSize < 0}
             />
           </div>
 
@@ -298,7 +305,7 @@ function ShoeItem(props) {
           {/* background overlay when add to bag popup is active */}
           <div
             className={`background-overlay ${clicked ? "active" : ""}`}
-            onClick={() => setClicked(!clicked)}
+            onClick={closeAddToBagPopup}
           ></div>
 
           {/* AddToBag component does not work with css transitons */}
@@ -311,7 +318,7 @@ function ShoeItem(props) {
               height={12}
               className="close-btn"
               fill="var(--primary1)"
-              onClick={() => setClicked(!clicked)}
+              onClick={closeAddToBagPopup}
             />
             <h3>Successfully added to bag!</h3>
             <div className="popup-product-info">
@@ -322,8 +329,8 @@ function ShoeItem(props) {
               />
               <div className="popup-product-info-text">
                 <h4>{shoeData[0].name}</h4>
-                <p>Size: {selectedSize} ({props.category})</p>
-                <h5>{shoeData[0].price}</h5>
+                <p>Size: {selectedSize}</p>
+                <h5>${shoeData[0].price}</h5>
               </div>
             </div>
             <div className="popup-btns">
