@@ -10,19 +10,25 @@ function CheckoutReview() {
     navigate(`/checkout-confirmation`);
   };
 
+  let bagItems = JSON.parse(localStorage.getItem("bagItems"));
+  let subtotal = JSON.parse(localStorage.getItem("subtotal"));
+
   const OrderItem = (props) => {
+
+    const {shoe} = props;
+
     return (
       <div className="order-item">
         <img
-          src={require(`../../images/shoes-img-thumbnail-sm.png`)}
-          alt={`order-item`}
+          src={shoe.image}
+          alt={`${shoe.name} order-item`}
         />
         <div className="order-item-details">
-          <h5>Continental 80</h5>
+          <h5>{shoe.name} </h5>
           <p>Size: 7.5 (Men's)</p>
         </div>
         <div className="order-item-quantity">
-          <p>Qty: 1</p>
+          <p>Qty: {shoe.qty}</p>
         </div>
       </div>
     );
@@ -36,7 +42,9 @@ function CheckoutReview() {
       <div className="order-items-box">
         <div className="order-items">
           <h4>Order Item(s)</h4>
-          <OrderItem />
+          {bagItems.map((shoe, i) => {
+            return <OrderItem key={i} shoe={shoe} />;
+          })}
         </div>
       </div>
 
@@ -80,13 +88,13 @@ function CheckoutReview() {
 
           <div className="order-summary-details">
             <p>Subtotal</p>
-            <p className="right-align">$100.00</p>
+            <p className="right-align">${subtotal.toFixed(2)}</p>
             <p>Shipping (USPS Ground)</p>
             <p className="right-align">$5.99</p>
             <p>Sales Tax</p>
             <p className="right-align">-</p>
             <p className="order-total">Total</p>
-            <p className="order-total right-align">{`$105.99`}</p>
+            <p className="order-total right-align">${(subtotal + 5.99).toFixed(2)}</p>
           </div>
         </div>
       </div>

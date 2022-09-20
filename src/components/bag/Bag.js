@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as Close } from "../../images/close.svg";
 import InputField from "../input-field/InputField";
 import ButtonItem from "../button-item/ButtonItem";
@@ -25,7 +25,6 @@ function Bag(props) {
   bagItems.forEach((shoe) => (numItem += shoe.qty));
   // total quantity
   const [numItems, setNumItems] = useState(numItem);
-
 
   // price of all items
   let itemPrice = 0;
@@ -69,7 +68,9 @@ function Bag(props) {
         <img src={shoe.image} alt={shoe.name} />
 
         <div className="item-details">
-          <p className="shoe-name">{shoe.name}</p>
+          <Link to={`${shoe.path}`}>
+            <p className="shoe-name">{shoe.name}</p>
+          </Link>
           <p className="shoe-size">Size: 7.5 (Men's)</p>
 
           <div className="item-details-price-qty">

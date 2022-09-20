@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { ReactComponent as Star } from "../../images/Star.svg";
 import { ReactComponent as Arrow } from "../../images/Arrow.svg";
@@ -39,6 +39,9 @@ function ShoeItem(props) {
 
   // currently selected size
   const [selectedSize, setSelectedSize] = useState(-1);
+
+  const location = useLocation();
+  
 
   useEffect(() => {
     // get the shoes data and finds matching shoe with id
@@ -216,6 +219,7 @@ function ShoeItem(props) {
   const addItemToBag = () => {
     setClicked(!clicked);
     let arrayBagItems = JSON.parse(localStorage.getItem("bagItems") || "[]");
+    
 
     // check if shoe added is already in bag
     const found = arrayBagItems.some(el => el.id === shoeData[0].id);
@@ -227,7 +231,7 @@ function ShoeItem(props) {
     } 
     else {
       // add to bag
-      arrayBagItems.push({...shoeData[0], "qty" : 1});
+      arrayBagItems.push({...shoeData[0], "qty" : 1, "path" : location.pathname});
     }
     
     localStorage.setItem("bagItems", JSON.stringify(arrayBagItems));
