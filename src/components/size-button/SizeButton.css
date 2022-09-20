@@ -1,23 +1,32 @@
 option {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 35px;
   border-radius: 10px;
   border: 2px solid var(--accent1);
   background-color: transparent;
   font-size: 1rem;
+  text-justify: auto;
   font-weight: var(--regular);
   color: var(--accent1);
   text-align: center;
   display: inline-block;
   cursor: pointer;
   border: 2px solid;
-  margin: 3px;
+  margin: 9px;
   text-align: center;
   vertical-align: middle;
   line-height: normal;
-  /* padding: 7px 10px; */
+  padding: 10px 10px 1px;
 }
 
+option div{
+text-align: center;
+}
+
+option:focus-visible{
+  font-size: large;
+  background-color:yellow;
+}
 
 
 .size-button .filled {

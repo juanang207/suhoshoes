@@ -7,7 +7,7 @@ class SizeButton extends Component {
     const { sizeObj,index} = this.props;
     return (
         <option id ={index} value = {sizeObj.size} key= {index} >
-        {sizeObj.size}
+        <div>{sizeObj.size}</div>
         </option>
     );
   }
