@@ -56,6 +56,14 @@ function Bag(props) {
       updateItemsPrice();
     };
 
+    const removeItemInCart = () => {
+      let objIndex = bagItems.findIndex((obj) => obj.id === shoe.id);
+      bagItems.splice(objIndex, 1);
+      localStorage.setItem("bagItems", JSON.stringify(bagItems));
+      updateNumOfItems();
+      updateItemsPrice();
+    };
+
     return (
       <div className="bag-item">
         <img src={shoe.image} alt={shoe.name} />
@@ -131,6 +139,7 @@ function Bag(props) {
           height={12}
           className="close-btn"
           fill="var(--grey300)"
+          onClick={removeItemInCart}
         />
       </div>
     );
