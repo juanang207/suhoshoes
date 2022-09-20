@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { ReactComponent as Star } from "../../images/Star.svg";
 import { ReactComponent as Arrow } from "../../images/Arrow.svg";
@@ -39,6 +39,9 @@ function ShoeItem(props) {
 
   // currently selected size
   const [selectedSize, setSelectedSize] = useState(-1);
+
+  const location = useLocation();
+  
 
   useEffect(() => {
     // get the shoes data and finds matching shoe with id
@@ -204,6 +207,28 @@ function ShoeItem(props) {
   //   );
   // };
 
+  // after clicking on ADD TO BAG btn, opens popup and add shoe to localstorage
+  const addItemToBag = () => {
+    setClicked(!clicked);
+    let arrayBagItems = JSON.parse(localStorage.getItem("bagItems") || "[]");
+    
+
+    // check if shoe added is already in bag
+    const found = arrayBagItems.some(el => el.id === shoeData[0].id);
+
+    if (found) {
+      // increase qty if already added to bag
+      let objIndex = arrayBagItems.findIndex((obj => obj.id === shoeData[0].id));
+      arrayBagItems[objIndex].qty+=1;
+    } 
+    else {
+      // add to bag
+      arrayBagItems.push({...shoeData[0], "qty" : 1, "path" : location.pathname});
+    }
+    
+    localStorage.setItem("bagItems", JSON.stringify(arrayBagItems));
+  };
+
   return (
     <div>
       {shoeData.length && (
@@ -252,7 +277,7 @@ function ShoeItem(props) {
           <div className="add-to-bag-btn">
             <ButtonItem
               text="add to bag"
-              onClick={() => setClicked(!clicked)}
+              onClick={() => addItemToBag()}
             />
           </div>
 
@@ -309,6 +334,7 @@ function ShoeItem(props) {
                 text="continue shopping"
                 color="var(--accent1)"
                 backgroundColor="var(--primary1)"
+                onClick={() => setClicked(!clicked)}
               />
             </div>
           </div>

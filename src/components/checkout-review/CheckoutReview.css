@@ -36,11 +36,14 @@
 }
 
 .order-item img {
-  margin-right: -20px;
+  margin-right: 0px;
+  width: 68px;
 }
 
 .order-item-details {
-  margin-left: -20px
+  margin-left: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .order-item-details h5 {
@@ -59,6 +62,7 @@
   font-weight: var(--medium);
   font-size: 0.875rem;
   color: var(--accent2);
+  width: max-content;
 }
 
 .checkout-review .payment-box {

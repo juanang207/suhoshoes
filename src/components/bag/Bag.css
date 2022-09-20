@@ -9,6 +9,14 @@
   margin-top: 20px;
 }
 
+.bag-items .empty-bag {
+  padding: 80px;
+  font-size: 1.125rem;
+  color: var(--secondary2);
+  font-weight: var(--medium);
+  text-align: center;
+}
+
 .bag-item {
   margin: 0 auto;
   width: 335px;
@@ -19,9 +27,12 @@
   display: flex;
   align-items: center;
   position: relative;
+  margin-bottom: 20px;
 }
 
 .bag-item img {
+  width: 140px;
+  height: auto;
   border-radius: 20px;
   margin: 15px 0px 15px 15px;
 }
@@ -77,7 +88,7 @@
   margin-right: 20px;
 }
 
-.order-summary h4{ 
+.order-summary h4 {
   margin-bottom: 20px;
   font-size: 1.125rem;
   color: var(--accent2);
@@ -109,8 +120,8 @@
 
 .checkout-btns {
   text-align: center;
+  margin-bottom: 30px;
 }
-
 
 .checkout-btns .paypal-btn {
   width: 335px;
