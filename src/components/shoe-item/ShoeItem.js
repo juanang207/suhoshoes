@@ -6,6 +6,7 @@ import { ReactComponent as Arrow } from "../../images/Arrow.svg";
 import { ReactComponent as Close } from "../../images/close.svg";
 import SizeButton from "../size-button/SizeButton";
 import ButtonItem from "../button-item/ButtonItem";
+import Reviews  from "../reviews/reviews";
 import "./ShoeItem.css";
 
 function ShoeItem(props) {
@@ -27,7 +28,7 @@ function ShoeItem(props) {
     },
     {
       title: "Reviews (21)",
-      info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fames aliquet lacus netus faucibus lobortis. Egestas laoreet ultrices sed vitae morbi lectus. Viverra volutpat, fermentum, enim viverra quisque mauris, donec diam sapien.",
+      info: <Reviews />,
       open: false,
     },
   ]);
@@ -116,11 +117,10 @@ function ShoeItem(props) {
         <div
           className={props.infoSection.open ? "open" : ""}
           key={props.index}
-          onClick={() => props.toggleInfo(props.index)}
         >
           <div className="information-section">
             <h4>{props.infoSection.title}</h4>
-            <Arrow width={18} height={10} className="arrow" />
+            <Arrow width={18} onClick={() => props.toggleInfo(props.index)} height={10} className="arrow" />
           </div>
           <div className="info-body">
             {props.infoSection.title === "Product Details" ? (
@@ -144,8 +144,6 @@ function ShoeItem(props) {
       infoSection.map((infoSection, i) => {
         if (i === index) {
           infoSection.open = !infoSection.open;
-        } else {
-          infoSection.open = false;
         }
         return infoSection;
       })
