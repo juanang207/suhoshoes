@@ -56,7 +56,9 @@ function Bag(props) {
     };
 
     const removeItemInCart = () => {
-      let objIndex = bagItems.findIndex((obj) => (obj.id === shoe.id) && (obj.size === shoe.size));
+      let objIndex = bagItems.findIndex(
+        (obj) => obj.id === shoe.id && obj.size === shoe.size
+      );
       bagItems.splice(objIndex, 1);
       localStorage.setItem("bagItems", JSON.stringify(bagItems));
       updateNumOfItems();
@@ -169,44 +171,51 @@ function Bag(props) {
             return <BagItem key={i} shoe={shoe} />;
           })
         ) : (
-          <h4 className="empty-bag">Bag is currently empty</h4>
+          <div className="empty-bag">
+          <h4>Bag is currently empty</h4>
+          </div>
         )}
       </div>
 
-      <div className="promo-code">
-        <InputField
-          width="323px"
-          paddingLeft="10px"
-          placeholderText="Enter promo code"
-        />
-      </div>
+      {bagItems.length > 0 ? (
+        <>
+          {" "}
+          <div className="promo-code">
+            <InputField
+              width="323px"
+              paddingLeft="10px"
+              placeholderText="Enter promo code"
+            />
+          </div>
+          <div className="order-summary">
+            <h4>Order Summary</h4>
 
-      <div className="order-summary">
-        <h4>Order Summary</h4>
-
-        <div className="order-details">
-          <p>{numItems} Item(s)</p>
-          <p className="right-align">{`$${itemsPrice.toFixed(2)}`}</p>
-          <p>Shipping</p>
-          <p className="right-align">$5.99</p>
-          <p>Sales Tax</p>
-          <p className="right-align">-</p>
-          <p className="order-total">Total</p>
-          <p className="order-total right-align">
-            ${(itemsPrice + 5.99).toFixed(2)}
-          </p>
-        </div>
-      </div>
-
-      <div className="checkout-btns">
-        <button className="paypal-btn">
-          <img
-            src={require(`../../images/Paypal.png`)}
-            alt={`paypal checkout`}
-          />
-        </button>
-        <ButtonItem text="Checkout" onClick={goToCheckoutShipping} />
-      </div>
+            <div className="order-details">
+              <p>{numItems} Item(s)</p>
+              <p className="right-align">{`$${itemsPrice.toFixed(2)}`}</p>
+              <p>Shipping</p>
+              <p className="right-align">$5.99</p>
+              <p>Sales Tax</p>
+              <p className="right-align">-</p>
+              <p className="order-total">Total</p>
+              <p className="order-total right-align">
+                ${(itemsPrice + 5.99).toFixed(2)}
+              </p>
+            </div>
+          </div>
+          <div className="checkout-btns">
+            <button className="paypal-btn">
+              <img
+                src={require(`../../images/Paypal.png`)}
+                alt={`paypal checkout`}
+              />
+            </button>
+            <ButtonItem text="Checkout" onClick={goToCheckoutShipping} />
+          </div>{" "}
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

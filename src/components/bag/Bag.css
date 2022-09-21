@@ -11,6 +11,9 @@
 
 .bag-items .empty-bag {
   padding: 80px;
+}
+
+.bag-items .empty-bag h4 {
   font-size: 1.125rem;
   color: var(--secondary2);
   font-weight: var(--medium);
