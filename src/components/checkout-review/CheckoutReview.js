@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import "./CheckoutReview.css";
@@ -34,9 +35,16 @@ function CheckoutReview() {
     );
   };
 
-  const placeOrder = () => {
+  const placeOrder = async () => {
     localStorage.removeItem("bagItems");
     localStorage.removeItem("subtotal");
+    await axios.post("http://localhost:4000/order")
+    .then((response) => {
+      console.log(response)
+    }, (error) => {
+      console.log(error)
+    })
+
     goToCheckoutConfirmation();
   }
 
