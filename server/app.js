@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const db = require("./db");
 const nikeShoesRouter = require("./routes/nikeShoesRoute");
 const AdidasShoesRouter = require("./routes/adidasShoesRoute");
 const pumaShoesRouter = require("./routes/pumaShoesRoute")
+
+db();
 
 app.use(cors());
 app.use(express.json());
