@@ -35,10 +35,24 @@ function CheckoutReview() {
     );
   };
 
+  const order = {
+    email: "johndoe@gmail.com",
+    firstName: "john",
+    lastName: "doe",
+    address: "123 12th st",
+    city: "NYC",
+    state: "NY",
+    zipcode: "12345",
+    deliveryOption: "USPS Ground",
+    payment: "Credit Card",
+    orderItems: bagItems
+  }
+
   const placeOrder = async () => {
     localStorage.removeItem("bagItems");
     localStorage.removeItem("subtotal");
-    await axios.post("http://localhost:4000/order")
+
+    await axios.post("http://localhost:4000/order", order)
     .then((response) => {
       console.log(response)
     }, (error) => {
