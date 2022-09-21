@@ -11,6 +11,9 @@
 
 .bag-items .empty-bag {
   padding: 80px;
+}
+
+.bag-items .empty-bag h4 {
   font-size: 1.125rem;
   color: var(--secondary2);
   font-weight: var(--medium);
@@ -45,6 +48,7 @@
 
 .bag-item .item-details {
   margin-left: 15px;
+  margin-right: 15px;
 }
 
 .bag-item .shoe-name {

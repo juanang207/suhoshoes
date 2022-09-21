@@ -11,6 +11,7 @@ class ButtonItem extends Component {
             color: this.props.color,
             backgroundColor: this.props.backgroundColor,
           }}
+          disabled={this.props.disabled}
         >
           {this.props.text}
         </button>

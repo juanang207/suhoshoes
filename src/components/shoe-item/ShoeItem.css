@@ -190,8 +190,8 @@ outline: none;
 
 .add-to-bag-popup .popup-img {
   width: 128px;
-  height: 128px;
-
+  height: auto;
+  border-radius: 20px;
 }
 
 .add-to-bag-popup .popup-product-info {
