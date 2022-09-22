@@ -10,6 +10,7 @@ class InputField extends Component {
           placeholder={this.props.placeholderText}
           className={`input-box ${this.props.boxType ? this.props.boxType : ""}`}
           style={{ width: this.props.width, paddingLeft: this.props.paddingLeft}}
+          onChange={this.props.setOnChange}
         ></input>
       </div>
     );

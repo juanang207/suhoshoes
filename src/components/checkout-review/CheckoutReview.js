@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import "./CheckoutReview.css";
@@ -15,15 +15,11 @@ function CheckoutReview() {
   let subtotal = JSON.parse(localStorage.getItem("subtotal"));
 
   const OrderItem = (props) => {
-
-    const {shoe} = props;
+    const { shoe } = props;
 
     return (
       <div className="order-item">
-        <img
-          src={shoe.image}
-          alt={`${shoe.name} order-item`}
-        />
+        <img src={shoe.image} alt={`${shoe.name} order-item`} />
         <div className="order-item-details">
           <h5>{shoe.name} </h5>
           <p>Size: {shoe.size}</p>
@@ -33,6 +29,22 @@ function CheckoutReview() {
         </div>
       </div>
     );
+  };
+
+  // clean up the data from bag items array objects
+  const getOrderItemDetails = () => {
+    const orderItems = bagItems;
+    orderItems.map((shoe) => {
+      delete shoe.description;
+      delete shoe.sizes;
+      delete shoe.silhoutte;
+      delete shoe.releaseDate;
+      delete shoe.path;
+
+      return shoe;
+    });
+
+    return orderItems;
   };
 
   const order = {
@@ -45,22 +57,24 @@ function CheckoutReview() {
     zipcode: "12345",
     deliveryOption: "USPS Ground",
     payment: "Credit Card",
-    orderItems: bagItems
-  }
+    orderItems: getOrderItemDetails(),
+  };
 
   const placeOrder = async () => {
     localStorage.removeItem("bagItems");
     localStorage.removeItem("subtotal");
 
-    await axios.post("http://localhost:4000/order", order)
-    .then((response) => {
-      console.log(response)
-    }, (error) => {
-      console.log(error)
-    })
+    await axios.post("http://localhost:4000/order", order).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
     goToCheckoutConfirmation();
-  }
+  };
 
   return (
     <div className="checkout-review">
@@ -122,7 +136,9 @@ function CheckoutReview() {
             <p>Sales Tax</p>
             <p className="right-align">-</p>
             <p className="order-total">Total</p>
-            <p className="order-total right-align">${(subtotal + 5.99).toFixed(2)}</p>
+            <p className="order-total right-align">
+              ${(subtotal + 5.99).toFixed(2)}
+            </p>
           </div>
         </div>
       </div>

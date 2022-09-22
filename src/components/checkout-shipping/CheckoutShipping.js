@@ -14,11 +14,12 @@ class CheckoutShipping extends Component {
         { isSelected: true, name: "USPS Ground 5-7 Business Days - $5.99" },
         { isSelected: false, name: "USPS Priority 1-3 Business Days - $10.99" },
       ],
+      emailInput : ""
     };
   }
 
   goToCheckoutPayment = () => {
-    this.props.navigate(`/checkout-payment`);
+    this.props.navigate(`/checkout-payment`, {state:{id:1,name:'sabaoon'}});
   };
 
   render() {
@@ -62,6 +63,10 @@ class CheckoutShipping extends Component {
       this.setState({ shippingOptions: updatedShippingOptions });
     };
 
+    const setEmailInput = (e) => {
+      this.setState({emailInput : e.target.value});
+    }
+
     return (
       <div className="checkout-shipping">
         <CheckoutTabs page="Shipping"/>
@@ -69,7 +74,7 @@ class CheckoutShipping extends Component {
         <div className="shipping-form">
           <h3>Contact</h3>
 
-          <FormField labelName="Email" width="323px" />
+          <FormField labelName="Email" width="323px" setInput={setEmailInput}/>
 
           <h3>Shipping Address</h3>
 
