@@ -29,7 +29,8 @@ function CheckoutShipping() {
   const [zipcodeInput, setZipcodeInput] = useState("");
 
   let navigate = useNavigate();
-  const goToCheckoutPayment = () => {
+  const goToCheckoutPayment = (e) => {
+    e.preventDefault();
     navigate(`/checkout-payment`, {
       state: {
         shippingInputs: {
@@ -40,7 +41,7 @@ function CheckoutShipping() {
           cityInput,
           stateInput,
           zipcodeInput,
-          shippingInput
+          shippingInput,
         },
       },
     });
@@ -110,73 +111,77 @@ function CheckoutShipping() {
     setZipcodeInput(e.target.value);
   };
 
-  let shippingInput = shippingOptions.find(option => option.isSelected === true);
+  let shippingInput = shippingOptions.find(
+    (option) => option.isSelected === true
+  );
 
   return (
     <div className="checkout-shipping">
       <CheckoutTabs page="Shipping" />
 
       <div className="shipping-form">
-        <h3>Contact</h3>
+        <form id="shippingForm" onSubmit={goToCheckoutPayment}>
+          <h3>Contact</h3>
 
-        <FormField
-          labelName="Email"
-          width="323px"
-          setInput={setEmailInputHelper}
-        />
-
-        <h3>Shipping Address</h3>
-
-        <FormField
-          labelName="First Name"
-          width="323px"
-          setInput={setFirstNameInputHelper}
-        />
-        <FormField
-          labelName="Last Name"
-          width="323px"
-          setInput={setLastNameInputHelper}
-        />
-        <FormField
-          labelName="Address"
-          width="323px"
-          setInput={setAddressInputHelper}
-        />
-
-        <div className="address-details">
           <FormField
-            labelName="City"
-            width="132px"
-            setInput={setCityInputHelper}
+            labelName="Email"
+            width="323px"
+            setInput={setEmailInputHelper}
+          />
+
+          <h3>Shipping Address</h3>
+
+          <FormField
+            labelName="First Name"
+            width="323px"
+            setInput={setFirstNameInputHelper}
           />
           <FormField
-            labelName="State"
-            width="47px"
-            setInput={setStateInputHelper}
+            labelName="Last Name"
+            width="323px"
+            setInput={setLastNameInputHelper}
           />
           <FormField
-            labelName="Zipcode"
-            width="99px"
-            setInput={setZipcodeInputHelper}
+            labelName="Address"
+            width="323px"
+            setInput={setAddressInputHelper}
           />
-        </div>
 
-        <h3>Delivery</h3>
-
-        <div className="delivery-options">
-          {shippingOptions.map((shippingOption, i) => (
-            <DeliveryOption
-              shippingOption={shippingOption}
-              index={i}
-              toggleOptions={toggleOptions}
-              key={i}
+          <div className="address-details">
+            <FormField
+              labelName="City"
+              width="132px"
+              setInput={setCityInputHelper}
             />
-          ))}
-        </div>
-      </div>
+            <FormField
+              labelName="State"
+              width="47px"
+              setInput={setStateInputHelper}
+            />
+            <FormField
+              labelName="Zipcode"
+              width="99px"
+              setInput={setZipcodeInputHelper}
+            />
+          </div>
 
-      <div className="payment-btn">
-        <ButtonItem text="proceed to payment" onClick={goToCheckoutPayment} />
+          <h3>Delivery</h3>
+
+          <div className="delivery-options">
+            {shippingOptions.map((shippingOption, i) => (
+              <DeliveryOption
+                shippingOption={shippingOption}
+                index={i}
+                toggleOptions={toggleOptions}
+                key={i}
+              />
+            ))}
+          </div>
+
+          <div className="payment-btn">
+            <ButtonItem text="proceed to payment" form="shippingForm" />
+          </div>
+        </form>
       </div>
     </div>
   );

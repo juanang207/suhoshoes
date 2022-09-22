@@ -22,7 +22,8 @@ function CheckoutPayment() {
   const shippingInputs = location.state.shippingInputs;
 
   let navigate = useNavigate();
-  const goToCheckoutReview = () => {
+  const goToCheckoutReview = (e) => {
+    e.preventDefault();
     navigate(`/checkout-review`, {
       state: {
         shippingInputs, 
@@ -110,6 +111,7 @@ function CheckoutPayment() {
       <CheckoutTabs page="Payment" completed={["Shipping"]} />
 
       <div className="payment-form">
+      <form id="paymentForm" onSubmit={goToCheckoutReview} >
         <h3>Payment Method</h3>
 
         <div className="payment-options">
@@ -167,6 +169,7 @@ function CheckoutPayment() {
               )}
             </div>
           </div>
+          
         )}
 
         {checkPaymentOptionSelected("Gift Card") && (
@@ -176,8 +179,9 @@ function CheckoutPayment() {
         )}
 
         <div className="review-order-btn">
-          <ButtonItem text="Review Order" onClick={goToCheckoutReview} />
+          <ButtonItem text="Review Order" form="paymentForm"/>
         </div>
+        </form>
       </div>
     </div>
   );

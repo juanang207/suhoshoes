@@ -6,12 +6,13 @@ class ButtonItem extends Component {
     return (
       <div className="button-item">
         <button
-          onClick={this.props.onClick}
+          onClick={this.props.onClick ? this.props.onClick : null}
           style={{
             color: this.props.color,
             backgroundColor: this.props.backgroundColor,
           }}
           disabled={this.props.disabled}
+          form={this.props.form ? this.props.form : ""}
         >
           {this.props.text}
         </button>
