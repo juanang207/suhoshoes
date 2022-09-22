@@ -40,6 +40,7 @@ function CheckoutShipping() {
           cityInput,
           stateInput,
           zipcodeInput,
+          shippingInput
         },
       },
     });
@@ -108,6 +109,8 @@ function CheckoutShipping() {
   const setZipcodeInputHelper = (e) => {
     setZipcodeInput(e.target.value);
   };
+
+  let shippingInput = shippingOptions.find(option => option.isSelected === true);
 
   return (
     <div className="checkout-shipping">
