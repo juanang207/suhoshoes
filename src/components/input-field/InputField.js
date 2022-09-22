@@ -6,7 +6,7 @@ class InputField extends Component {
     return (
       <div className="input-box-parent">
         <input
-          type="text"
+          type={this.props.type ? this.props.type: "text"}
           placeholder={this.props.placeholderText}
           className={`input-box ${this.props.boxType ? this.props.boxType : ""}`}
           style={{ width: this.props.width, paddingLeft: this.props.paddingLeft}}

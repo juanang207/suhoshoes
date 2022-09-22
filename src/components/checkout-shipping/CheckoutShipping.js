@@ -127,6 +127,7 @@ function CheckoutShipping() {
             labelName="Email"
             width="323px"
             setInput={setEmailInputHelper}
+            type="email"
           />
 
           <h3>Shipping Address</h3>
