@@ -7,15 +7,42 @@ import "./CheckoutShipping.css";
 
 function CheckoutShipping() {
   const [shippingOptions, setShippingOptions] = useState([
-    { isSelected: true, name: "USPS Ground 5-7 Business Days - $5.99" },
-    { isSelected: false, name: "USPS Priority 1-3 Business Days - $10.99" },
+    {
+      isSelected: true,
+      name: "USPS Ground",
+      price: 5.99,
+      time: "5-7 Business Days",
+    },
+    {
+      isSelected: false,
+      name: "USPS Priority",
+      price: 10.99,
+      time: "1-3 Business Days",
+    },
   ]);
   const [emailInput, setEmailInput] = useState("");
+  const [firstNameInput, setFirstNameInput] = useState("");
+  const [lastNameInput, setLastNameInput] = useState("");
+  const [addressInput, setAddressInput] = useState("");
+  const [cityInput, setCityInput] = useState("");
+  const [stateInput, setStateInput] = useState("");
+  const [zipcodeInput, setZipcodeInput] = useState("");
 
   let navigate = useNavigate();
-
   const goToCheckoutPayment = () => {
-    navigate(`/checkout-payment`, { state: { emailInput: emailInput } });
+    navigate(`/checkout-payment`, {
+      state: {
+        shippingInputs: {
+          emailInput,
+          firstNameInput,
+          lastNameInput,
+          addressInput,
+          cityInput,
+          stateInput,
+          zipcodeInput,
+        },
+      },
+    });
   };
 
   const DeliveryOption = (props) => {
@@ -34,7 +61,8 @@ function CheckoutShipping() {
             checked={props.shippingOption.isSelected}
             onChange={() => props.toggleOptions(props.index)}
           />
-          {props.shippingOption.name}
+          {props.shippingOption.name} {props.shippingOption.time} - $
+          {props.shippingOption.price}
         </label>
       </div>
     );
@@ -54,8 +82,31 @@ function CheckoutShipping() {
   };
 
   const setEmailInputHelper = (e) => {
-    console.log(e.target.value)
     setEmailInput(e.target.value);
+  };
+
+  const setFirstNameInputHelper = (e) => {
+    setFirstNameInput(e.target.value);
+  };
+
+  const setLastNameInputHelper = (e) => {
+    setLastNameInput(e.target.value);
+  };
+
+  const setAddressInputHelper = (e) => {
+    setAddressInput(e.target.value);
+  };
+
+  const setCityInputHelper = (e) => {
+    setCityInput(e.target.value);
+  };
+
+  const setStateInputHelper = (e) => {
+    setStateInput(e.target.value);
+  };
+
+  const setZipcodeInputHelper = (e) => {
+    setZipcodeInput(e.target.value);
   };
 
   return (
@@ -73,14 +124,38 @@ function CheckoutShipping() {
 
         <h3>Shipping Address</h3>
 
-        <FormField labelName="First Name" width="323px" />
-        <FormField labelName="Last Name" width="323px" />
-        <FormField labelName="Address" width="323px" />
+        <FormField
+          labelName="First Name"
+          width="323px"
+          setInput={setFirstNameInputHelper}
+        />
+        <FormField
+          labelName="Last Name"
+          width="323px"
+          setInput={setLastNameInputHelper}
+        />
+        <FormField
+          labelName="Address"
+          width="323px"
+          setInput={setAddressInputHelper}
+        />
 
         <div className="address-details">
-          <FormField labelName="City" width="132px" />
-          <FormField labelName="State" width="47px" />
-          <FormField labelName="Zipcode" width="99px" />
+          <FormField
+            labelName="City"
+            width="132px"
+            setInput={setCityInputHelper}
+          />
+          <FormField
+            labelName="State"
+            width="47px"
+            setInput={setStateInputHelper}
+          />
+          <FormField
+            labelName="Zipcode"
+            width="99px"
+            setInput={setZipcodeInputHelper}
+          />
         </div>
 
         <h3>Delivery</h3>

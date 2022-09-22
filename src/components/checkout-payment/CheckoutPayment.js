@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import FormField from "../form-field/FormField";
@@ -70,6 +70,13 @@ function CheckoutPayment() {
       setBillingCheck(false);
     }
   };
+
+
+  // get state from previous page (shipping)
+  const location = useLocation();
+  console.log(location.state.shippingInputs)
+
+
 
   return (
     <div className="checkout-payment">
