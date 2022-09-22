@@ -159,6 +159,11 @@
   font-weight: var(--regular);
 }
 
+.shipping-address-info .edit-shipping-btn {
+  width: 40%;
+  text-align: right;
+}
+
 .order-summary-box {
   box-sizing: border-box;
   width: 335px;

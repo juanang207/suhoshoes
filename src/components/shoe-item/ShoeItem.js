@@ -341,7 +341,7 @@ function ShoeItem(props) {
                 text="continue shopping"
                 color="var(--accent1)"
                 backgroundColor="var(--primary1)"
-                onClick={() => setClicked(!clicked)}
+                onClick={closeAddToBagPopup}
               />
             </div>
           </div>

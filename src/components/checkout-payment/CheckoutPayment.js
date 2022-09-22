@@ -12,10 +12,28 @@ function CheckoutPayment() {
   ]);
 
   const [billingCheck, setBillingCheck] = useState(false);
+  const [cardNameInput, setCardNameInput] = useState("");
+  const [cardNumberInput, setCardNumberInput] = useState(-1);
+  const [expDateInput, setExpDateInput] = useState("");
+  const [securityCodeInput, setSecurityCodeInput] = useState(-1);
+
+  // get state from previous page (shipping)
+  const location = useLocation();
+  const shippingInputs = location.state.shippingInputs;
 
   let navigate = useNavigate();
   const goToCheckoutReview = () => {
-    navigate(`/checkout-review`);
+    navigate(`/checkout-review`, {
+      state: {
+        shippingInputs, 
+        paymentInputs: {
+          cardNameInput,
+          cardNumberInput,
+          expDateInput,
+          securityCodeInput
+        },
+      },
+    });
   };
 
   const PaymentOption = (props) => {
@@ -71,12 +89,21 @@ function CheckoutPayment() {
     }
   };
 
+  const setCardNameInputHelper = (e) => {
+    setCardNameInput(e.target.value);
+  };
 
-  // get state from previous page (shipping)
-  const location = useLocation();
-  console.log(location.state.shippingInputs)
+  const setCardNumberInputHelper = (e) => {
+    setCardNumberInput(e.target.value);
+  };
 
+  const setExpDateInputHelper = (e) => {
+    setExpDateInput(e.target.value);
+  };
 
+  const setSecurityCodeInputHelper = (e) => {
+    setSecurityCodeInput(e.target.value);
+  };
 
   return (
     <div className="checkout-payment">
@@ -98,18 +125,20 @@ function CheckoutPayment() {
 
         {checkPaymentOptionSelected("Credit Card") && (
           <div className="creditcard-form">
-            <FormField labelName="Cardholder Full Name" width="323px" />
+            <FormField labelName="Cardholder Full Name" width="323px" setInput={setCardNameInputHelper}/>
             <FormField
               labelName="Card Number"
               width="323px"
               boxType="credit-card"
+              setInput={setCardNumberInputHelper}
             />
             <div className="creditcard-details">
-              <FormField labelName="Expiration Date" width="150.5px" />
+              <FormField labelName="Expiration Date" width="150.5px" setInput={setExpDateInputHelper}/>
               <FormField
                 labelName="Security Code"
                 width="150.5px"
                 boxType="credit-card"
+                setInput={setSecurityCodeInputHelper}
               />
             </div>
 
