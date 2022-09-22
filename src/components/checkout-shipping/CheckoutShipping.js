@@ -15,7 +15,7 @@ function CheckoutShipping() {
   let navigate = useNavigate();
 
   const goToCheckoutPayment = () => {
-    navigate(`/checkout-payment`, { state: { id: 1, name: "sabaoon" } });
+    navigate(`/checkout-payment`, { state: { emailInput: emailInput } });
   };
 
   const DeliveryOption = (props) => {
