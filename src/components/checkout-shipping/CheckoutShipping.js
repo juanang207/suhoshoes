@@ -41,7 +41,7 @@ function CheckoutShipping() {
           cityInput,
           stateInput,
           zipcodeInput,
-          shippingInput,
+          shippingInput
         },
       },
     });

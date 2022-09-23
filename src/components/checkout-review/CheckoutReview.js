@@ -14,8 +14,7 @@ function CheckoutReview() {
   const location = useLocation();
   console.log(location.state);
 
-  const {shippingInputs, paymentInputs} = location.state;
-
+  const { shippingInputs, paymentInputs } = location.state;
 
   let bagItems = JSON.parse(localStorage.getItem("bagItems"));
   let subtotal = JSON.parse(localStorage.getItem("subtotal"));
@@ -62,7 +61,7 @@ function CheckoutReview() {
     state: shippingInputs.stateInput,
     zipcode: shippingInputs.zipcodeInput,
     deliveryOption: shippingInputs.shippingInput.name,
-    payment: "Credit Card",
+    payment: paymentInputs.paymentMethodInput,
     orderItems: getOrderItemDetails(),
   };
 
@@ -80,6 +79,14 @@ function CheckoutReview() {
     );
 
     goToCheckoutConfirmation();
+  };
+
+  const displayPayment = () => {
+    if (paymentInputs.paymentMethodInput === "Credit Card") {
+      return paymentInputs.cardNumberInput.slice(-4);
+    } else if (paymentInputs.paymentMethodInput === "Gift Card") {
+      return paymentInputs.giftCardNumberInput.slice(-4);
+    }
   };
 
   return (
@@ -106,10 +113,12 @@ function CheckoutReview() {
           </div>
           <div className="card-number">
             <img src={require(`../../images/visa.png`)} alt={`visa`} />
-            <p>**** {paymentInputs.cardNumberInput.slice(-4)}</p>
+            <p>**** {displayPayment()}</p>
           </div>
           <div className="credit-exp-date">
-            <p>{paymentInputs.expDateInput} </p>
+            <p>
+              {paymentInputs.expDateInput ? paymentInputs.expDateInput : ""}{" "}
+            </p>
           </div>
         </div>
       </div>
@@ -123,9 +132,14 @@ function CheckoutReview() {
             </Link>
           </div>
           <div className="shipping-address">
-            <p>{shippingInputs.firstNameInput} {shippingInputs.lastNameInput} </p>
+            <p>
+              {shippingInputs.firstNameInput} {shippingInputs.lastNameInput}{" "}
+            </p>
             <p>{shippingInputs.addressInput} </p>
-            <p>{shippingInputs.cityInput}, {shippingInputs.stateInput} {shippingInputs.zipcodeInput} </p>
+            <p>
+              {shippingInputs.cityInput}, {shippingInputs.stateInput}{" "}
+              {shippingInputs.zipcodeInput}{" "}
+            </p>
           </div>
         </div>
       </div>

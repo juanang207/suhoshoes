@@ -16,6 +16,7 @@ function CheckoutPayment() {
   const [cardNumberInput, setCardNumberInput] = useState(-1);
   const [expDateInput, setExpDateInput] = useState("");
   const [securityCodeInput, setSecurityCodeInput] = useState(-1);
+  const [giftCardNumberInput, setGiftCardNumberInput] = useState(-1);
 
   // get state from previous page (shipping)
   const location = useLocation();
@@ -31,7 +32,9 @@ function CheckoutPayment() {
           cardNameInput,
           cardNumberInput,
           expDateInput,
-          securityCodeInput
+          securityCodeInput,
+          paymentMethodInput : paymentMethodInput.name,
+          giftCardNumberInput
         },
       },
     });
@@ -106,6 +109,15 @@ function CheckoutPayment() {
     setSecurityCodeInput(e.target.value);
   };
 
+  const setGiftCardNumberInputHelper = (e) => {
+    setGiftCardNumberInput(e.target.value);
+  };
+
+  let paymentMethodInput = paymentOptions.find(
+    (option) => option.isSelected === true
+  );
+  
+
   return (
     <div className="checkout-payment">
       <CheckoutTabs page="Payment" completed={["Shipping"]} />
@@ -174,7 +186,7 @@ function CheckoutPayment() {
 
         {checkPaymentOptionSelected("Gift Card") && (
           <div className="giftcard-form">
-            <FormField labelName="Gift Card Number" width="323px" />
+            <FormField labelName="Gift Card Number" width="323px" setInput={setGiftCardNumberInputHelper}/>
           </div>
         )}
 
