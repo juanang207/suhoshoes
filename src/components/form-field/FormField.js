@@ -8,7 +8,13 @@ class FormField extends Component {
       <div className="form-field">
         <label>
           {this.props.labelName}
-          <InputField width={this.props.width} paddingLeft="10px" boxType={this.props.boxType ? this.props.boxType : ""}/>
+          <InputField
+            width={this.props.width}
+            paddingLeft="10px"
+            boxType={this.props.boxType ? this.props.boxType : ""}
+            setOnChange = {this.props.setInput}
+            type = {this.props.type}
+          />
         </label>
       </div>
     );

@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import "./CheckoutReview.css";
@@ -10,19 +11,21 @@ function CheckoutReview() {
     navigate(`/checkout-confirmation`);
   };
 
+  const location = useLocation();
+  console.log(location.state);
+
+  const {shippingInputs, paymentInputs} = location.state;
+
+
   let bagItems = JSON.parse(localStorage.getItem("bagItems"));
   let subtotal = JSON.parse(localStorage.getItem("subtotal"));
 
   const OrderItem = (props) => {
-
-    const {shoe} = props;
+    const { shoe } = props;
 
     return (
       <div className="order-item">
-        <img
-          src={shoe.image}
-          alt={`${shoe.name} order-item`}
-        />
+        <img src={shoe.image} alt={`${shoe.name} order-item`} />
         <div className="order-item-details">
           <h5>{shoe.name} </h5>
           <p>Size: {shoe.size}</p>
@@ -34,11 +37,50 @@ function CheckoutReview() {
     );
   };
 
-  const placeOrder = () => {
+  // clean up the data from bag items array objects
+  const getOrderItemDetails = () => {
+    const orderItems = bagItems;
+    orderItems.map((shoe) => {
+      delete shoe.description;
+      delete shoe.sizes;
+      delete shoe.silhoutte;
+      delete shoe.releaseDate;
+      delete shoe.path;
+
+      return shoe;
+    });
+
+    return orderItems;
+  };
+
+  const order = {
+    email: shippingInputs.emailInput,
+    firstName: shippingInputs.firstNameInput,
+    lastName: shippingInputs.lastNameInput,
+    address: shippingInputs.addressInput,
+    city: shippingInputs.cityInput,
+    state: shippingInputs.stateInput,
+    zipcode: shippingInputs.zipcodeInput,
+    deliveryOption: shippingInputs.shippingInput.name,
+    payment: "Credit Card",
+    orderItems: getOrderItemDetails(),
+  };
+
+  const placeOrder = async () => {
     localStorage.removeItem("bagItems");
     localStorage.removeItem("subtotal");
+
+    await axios.post("http://localhost:4000/order", order).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
     goToCheckoutConfirmation();
-  }
+  };
 
   return (
     <div className="checkout-review">
@@ -64,10 +106,10 @@ function CheckoutReview() {
           </div>
           <div className="card-number">
             <img src={require(`../../images/visa.png`)} alt={`visa`} />
-            <p>**** 2222</p>
+            <p>**** {paymentInputs.cardNumberInput.slice(-4)}</p>
           </div>
           <div className="credit-exp-date">
-            <p>02/27</p>
+            <p>{paymentInputs.expDateInput} </p>
           </div>
         </div>
       </div>
@@ -81,9 +123,9 @@ function CheckoutReview() {
             </Link>
           </div>
           <div className="shipping-address">
-            <p>John Doe</p>
-            <p>123 Forest Dr</p>
-            <p>New York, NY 10003</p>
+            <p>{shippingInputs.firstNameInput} {shippingInputs.lastNameInput} </p>
+            <p>{shippingInputs.addressInput} </p>
+            <p>{shippingInputs.cityInput}, {shippingInputs.stateInput} {shippingInputs.zipcodeInput} </p>
           </div>
         </div>
       </div>
@@ -95,12 +137,14 @@ function CheckoutReview() {
           <div className="order-summary-details">
             <p>Subtotal</p>
             <p className="right-align">${subtotal.toFixed(2)}</p>
-            <p>Shipping (USPS Ground)</p>
-            <p className="right-align">$5.99</p>
+            <p>Shipping ({shippingInputs.shippingInput.name})</p>
+            <p className="right-align">${shippingInputs.shippingInput.price}</p>
             <p>Sales Tax</p>
             <p className="right-align">-</p>
             <p className="order-total">Total</p>
-            <p className="order-total right-align">${(subtotal + 5.99).toFixed(2)}</p>
+            <p className="order-total right-align">
+              ${(subtotal + shippingInputs.shippingInput.price).toFixed(2)}
+            </p>
           </div>
         </div>
       </div>

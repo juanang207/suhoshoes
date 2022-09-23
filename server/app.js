@@ -4,7 +4,8 @@ const cors = require("cors");
 const db = require("./db");
 const nikeShoesRouter = require("./routes/nikeShoesRoute");
 const AdidasShoesRouter = require("./routes/adidasShoesRoute");
-const pumaShoesRouter = require("./routes/pumaShoesRoute")
+const pumaShoesRouter = require("./routes/pumaShoesRoute");
+const orderRouter = require("./routes/orderRoute");
 
 db();
 
@@ -15,5 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/nike-shoes", nikeShoesRouter);
 app.use("/api/adidas-shoes", AdidasShoesRouter);
 app.use("/api/puma-shoes",  pumaShoesRouter);
+
+app.use("/order",  orderRouter);
 
 module.exports = app;
