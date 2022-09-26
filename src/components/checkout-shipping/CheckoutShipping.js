@@ -21,8 +21,8 @@ function CheckoutShipping() {
     },
   ]);
   const [emailInput, setEmailInput] = useState("");
-  const [firstNameInput, setFirstNameInput] = useState("");
-  const [lastNameInput, setLastNameInput] = useState("");
+  const [firstNameInput, setFirstNameInput] = useState({inputVal: "", error: false});
+  const [lastNameInput, setLastNameInput] = useState({inputVal: "", error: false});
   const [addressInput, setAddressInput] = useState("");
   const [cityInput, setCityInput] = useState("");
   const [stateInput, setStateInput] = useState("");
@@ -31,7 +31,8 @@ function CheckoutShipping() {
   let navigate = useNavigate();
   const goToCheckoutPayment = (e) => {
     e.preventDefault();
-    navigate(`/checkout-payment`, {
+    let valid = handleValidation();
+    valid ? navigate(`/checkout-payment`, {
       state: {
         shippingInputs: {
           emailInput,
@@ -44,7 +45,7 @@ function CheckoutShipping() {
           shippingInput
         },
       },
-    });
+    }) : console.log("error");
   };
 
   const DeliveryOption = (props) => {
@@ -88,11 +89,13 @@ function CheckoutShipping() {
   };
 
   const setFirstNameInputHelper = (e) => {
-    setFirstNameInput(e.target.value);
+    firstNameInput.inputVal = e.target.value;
+    setFirstNameInput({...firstNameInput});
   };
 
   const setLastNameInputHelper = (e) => {
-    setLastNameInput(e.target.value);
+    lastNameInput.inputVal = e.target.value;
+    setLastNameInput({...lastNameInput});
   };
 
   const setAddressInputHelper = (e) => {
@@ -115,6 +118,26 @@ function CheckoutShipping() {
     (option) => option.isSelected === true
   );
 
+  const handleValidation = () => {
+
+    let valid = true;
+    if (!firstNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
+      console.log("does not match")
+      firstNameInput.error = true;
+      setFirstNameInput({...firstNameInput});
+      valid = false;
+    }
+    if (!lastNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
+      console.log("does not match")
+      lastNameInput.error = true;
+      setLastNameInput({...lastNameInput});
+      valid = false;
+    }
+
+    return valid;
+    
+  }
+
   return (
     <div className="checkout-shipping">
       <CheckoutTabs page="Shipping" />
@@ -136,11 +159,13 @@ function CheckoutShipping() {
             labelName="First Name"
             width="323px"
             setInput={setFirstNameInputHelper}
+            error={firstNameInput.error}
           />
           <FormField
             labelName="Last Name"
             width="323px"
             setInput={setLastNameInputHelper}
+            error={lastNameInput.error}
           />
           <FormField
             labelName="Address"

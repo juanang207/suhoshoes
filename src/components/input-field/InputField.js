@@ -9,7 +9,7 @@ class InputField extends Component {
           type={this.props.type ? this.props.type: "text"}
           placeholder={this.props.placeholderText}
           className={`input-box ${this.props.boxType ? this.props.boxType : ""}`}
-          style={{ width: this.props.width, paddingLeft: this.props.paddingLeft}}
+          style={ this.props.error ?  {width: this.props.width, paddingLeft: this.props.paddingLeft, border: "2px solid rgba(255, 0, 0, 0.5)" } : { width: this.props.width, paddingLeft: this.props.paddingLeft } }
           onChange={this.props.setOnChange}
           required
         ></input>

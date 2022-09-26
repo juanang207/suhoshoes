@@ -104,9 +104,10 @@
   display: flex;
   width: 50%;
   margin-top: 20px;
+  align-items: center;
 }
 
-.payment-info .card-number img {
+.payment-info .card-number .card-icon {
   align-self: center;
   margin-right: 5px;
 }

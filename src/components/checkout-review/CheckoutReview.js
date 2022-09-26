@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { ReactComponent as CardIcon } from "../../images/security-card.svg";
 import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import "./CheckoutReview.css";
@@ -112,7 +113,7 @@ function CheckoutReview() {
             </Link>
           </div>
           <div className="card-number">
-            <img src={require(`../../images/visa.png`)} alt={`visa`} />
+            <CardIcon className="card-icon" fill="var(--grey500)"/>            
             <p>**** {displayPayment()}</p>
           </div>
           <div className="credit-exp-date">
