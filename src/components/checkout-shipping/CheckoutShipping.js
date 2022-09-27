@@ -20,7 +20,7 @@ function CheckoutShipping() {
       time: "1-3 Business Days",
     },
   ]);
-  const [emailInput, setEmailInput] = useState("");
+  const [emailInput, setEmailInput] = useState({ inputVal: "", error: false });
   const [firstNameInput, setFirstNameInput] = useState({
     inputVal: "",
     error: false,
@@ -99,7 +99,15 @@ function CheckoutShipping() {
   };
 
   const setEmailInputHelper = (e) => {
-    setEmailInput(e.target.value);
+    emailInput.inputVal = e.target.value;
+    setEmailInput({ ...emailInput });
+
+    if (emailInput.error) {
+      if (emailInput.inputVal.match(/^[a-z0-9]+(?:[._][a-z0-9]+)*@(?:\w+\.)+\w{2,3}$/i)) {
+        emailInput.error = false;
+        setEmailInput({ ...emailInput });
+      }
+    }
   };
 
   const setFirstNameInputHelper = (e) => {
@@ -182,6 +190,12 @@ function CheckoutShipping() {
 
   const handleValidation = () => {
     let valid = true;
+    if (!emailInput.inputVal.match(/^[a-z0-9]+(?:[._][a-z0-9]+)*@(?:\w+\.)+\w{2,3}$/i)) {
+      console.log("does not match");
+      emailInput.error = true;
+      setEmailInput({ ...emailInput });
+      valid = false;
+    }
     if (!firstNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
       console.log("does not match");
       firstNameInput.error = true;
@@ -234,7 +248,7 @@ function CheckoutShipping() {
             labelName="Email"
             width="323px"
             setInput={setEmailInputHelper}
-            type="email"
+            error={emailInput.error}
           />
 
           <h3>Shipping Address</h3>
