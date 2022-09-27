@@ -21,31 +21,45 @@ function CheckoutShipping() {
     },
   ]);
   const [emailInput, setEmailInput] = useState("");
-  const [firstNameInput, setFirstNameInput] = useState({inputVal: "", error: false});
-  const [lastNameInput, setLastNameInput] = useState({inputVal: "", error: false});
-  const [addressInput, setAddressInput] = useState({inputVal: "", error: false});
-  const [cityInput, setCityInput] = useState({inputVal: "", error: false});
-  const [stateInput, setStateInput] = useState({inputVal: "", error: false});
-  const [zipcodeInput, setZipcodeInput] = useState({inputVal: "", error: false});
+  const [firstNameInput, setFirstNameInput] = useState({
+    inputVal: "",
+    error: false,
+  });
+  const [lastNameInput, setLastNameInput] = useState({
+    inputVal: "",
+    error: false,
+  });
+  const [addressInput, setAddressInput] = useState({
+    inputVal: "",
+    error: false,
+  });
+  const [cityInput, setCityInput] = useState({ inputVal: "", error: false });
+  const [stateInput, setStateInput] = useState({ inputVal: "", error: false });
+  const [zipcodeInput, setZipcodeInput] = useState({
+    inputVal: "",
+    error: false,
+  });
 
   let navigate = useNavigate();
   const goToCheckoutPayment = (e) => {
     e.preventDefault();
     let valid = handleValidation();
-    valid ? navigate(`/checkout-payment`, {
-      state: {
-        shippingInputs: {
-          emailInput,
-          firstNameInput,
-          lastNameInput,
-          addressInput,
-          cityInput,
-          stateInput,
-          zipcodeInput,
-          shippingInput
-        },
-      },
-    }) : console.log("error");
+    valid
+      ? navigate(`/checkout-payment`, {
+          state: {
+            shippingInputs: {
+              emailInput,
+              firstNameInput,
+              lastNameInput,
+              addressInput,
+              cityInput,
+              stateInput,
+              zipcodeInput,
+              shippingInput,
+            },
+          },
+        })
+      : console.log("error");
   };
 
   const DeliveryOption = (props) => {
@@ -90,32 +104,76 @@ function CheckoutShipping() {
 
   const setFirstNameInputHelper = (e) => {
     firstNameInput.inputVal = e.target.value;
-    setFirstNameInput({...firstNameInput});
+    setFirstNameInput({ ...firstNameInput });
+
+    // remove error alert when user corrects the invalid input
+    if (firstNameInput.error) {
+      if (firstNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
+        firstNameInput.error = false;
+        setFirstNameInput({ ...firstNameInput });
+      }
+    }
+    
   };
 
   const setLastNameInputHelper = (e) => {
     lastNameInput.inputVal = e.target.value;
-    setLastNameInput({...lastNameInput});
+    setLastNameInput({ ...lastNameInput });
+
+    if (lastNameInput.error) {
+      if (lastNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
+        lastNameInput.error = false;
+        setLastNameInput({ ...lastNameInput });
+      }
+    }
   };
 
   const setAddressInputHelper = (e) => {
     addressInput.inputVal = e.target.value;
-    setAddressInput({...addressInput});
+    setAddressInput({ ...addressInput });
+
+    if (addressInput.error) {
+      if (!addressInput.inputVal.match(/[!@$%^&*,?":{}|<>]/)) {
+        addressInput.error = false;
+        setAddressInput({ ...addressInput });
+      }
+    }
   };
 
   const setCityInputHelper = (e) => {
     cityInput.inputVal = e.target.value;
-    setCityInput({...cityInput});
+    setCityInput({ ...cityInput });
+
+    if (cityInput.error) {
+      if (cityInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
+        cityInput.error = false;
+        setCityInput({ ...cityInput });
+      }
+    }
   };
 
   const setStateInputHelper = (e) => {
     stateInput.inputVal = e.target.value;
-    setStateInput({...stateInput});
+    setStateInput({ ...stateInput });
+
+    if (stateInput.error) {
+      if (stateInput.inputVal.match(/^[a-z]{2}$/i)) {
+        stateInput.error = false;
+        setStateInput({ ...stateInput });
+      }
+    }
   };
 
   const setZipcodeInputHelper = (e) => {
     zipcodeInput.inputVal = e.target.value;
-    setZipcodeInput({...zipcodeInput});
+    setZipcodeInput({ ...zipcodeInput });
+
+    if (zipcodeInput.error) {
+      if (zipcodeInput.inputVal.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/)) {
+        zipcodeInput.error = false;
+        setZipcodeInput({ ...zipcodeInput });
+      }
+    }
   };
 
   let shippingInput = shippingOptions.find(
@@ -123,49 +181,46 @@ function CheckoutShipping() {
   );
 
   const handleValidation = () => {
-
     let valid = true;
     if (!firstNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
-      console.log("does not match")
+      console.log("does not match");
       firstNameInput.error = true;
-      setFirstNameInput({...firstNameInput});
+      setFirstNameInput({ ...firstNameInput });
       valid = false;
-    } 
+    }
     if (!lastNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
-      console.log("does not match")
+      console.log("does not match");
       lastNameInput.error = true;
-      setLastNameInput({...lastNameInput});
+      setLastNameInput({ ...lastNameInput });
       valid = false;
     }
     if (addressInput.inputVal.match(/[!@$%^&*,?":{}|<>]/)) {
-      console.log("does not match")
+      console.log("does not match");
       addressInput.error = true;
-      setAddressInput({...addressInput});
+      setAddressInput({ ...addressInput });
       valid = false;
     }
     if (!cityInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
-      console.log("does not match")
+      console.log("does not match");
       cityInput.error = true;
-      setCityInput({...cityInput});
+      setCityInput({ ...cityInput });
       valid = false;
     }
     if (!stateInput.inputVal.match(/^[a-z]{2}$/i)) {
-      console.log("does not match")
+      console.log("does not match");
       stateInput.error = true;
-      setStateInput({...stateInput});
+      setStateInput({ ...stateInput });
       valid = false;
     }
     if (!zipcodeInput.inputVal.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/)) {
-      console.log("does not match")
+      console.log("does not match");
       zipcodeInput.error = true;
-      setZipcodeInput({...zipcodeInput});
+      setZipcodeInput({ ...zipcodeInput });
       valid = false;
     }
 
-
     return valid;
-    
-  }
+  };
 
   return (
     <div className="checkout-shipping">
