@@ -84,9 +84,9 @@ function CheckoutReview() {
 
   const displayPayment = () => {
     if (paymentInputs.paymentMethodInput === "Credit Card") {
-      return paymentInputs.cardNumberInput.slice(-4);
+      return paymentInputs.cardNumberInput.inputVal.slice(-4);
     } else if (paymentInputs.paymentMethodInput === "Gift Card") {
-      return paymentInputs.giftCardNumberInput.slice(-4);
+      return paymentInputs.giftCardNumberInput.inputVal.slice(-4);
     }
   };
 
@@ -134,12 +134,12 @@ function CheckoutReview() {
           </div>
           <div className="shipping-address">
             <p>
-              {shippingInputs.firstNameInput} {shippingInputs.lastNameInput}{" "}
+              {shippingInputs.firstNameInput.inputVal} {shippingInputs.lastNameInput.inputVal}{" "}
             </p>
-            <p>{shippingInputs.addressInput} </p>
+            <p>{shippingInputs.addressInput.inputVal} </p>
             <p>
-              {shippingInputs.cityInput}, {shippingInputs.stateInput}{" "}
-              {shippingInputs.zipcodeInput}{" "}
+              {shippingInputs.cityInput.inputVal}, {shippingInputs.stateInput.inputVal}{" "}
+              {shippingInputs.zipcodeInput.inputVal}{" "}
             </p>
           </div>
         </div>
