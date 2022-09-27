@@ -23,10 +23,10 @@ function CheckoutShipping() {
   const [emailInput, setEmailInput] = useState("");
   const [firstNameInput, setFirstNameInput] = useState({inputVal: "", error: false});
   const [lastNameInput, setLastNameInput] = useState({inputVal: "", error: false});
-  const [addressInput, setAddressInput] = useState("");
-  const [cityInput, setCityInput] = useState("");
-  const [stateInput, setStateInput] = useState("");
-  const [zipcodeInput, setZipcodeInput] = useState("");
+  const [addressInput, setAddressInput] = useState({inputVal: "", error: false});
+  const [cityInput, setCityInput] = useState({inputVal: "", error: false});
+  const [stateInput, setStateInput] = useState({inputVal: "", error: false});
+  const [zipcodeInput, setZipcodeInput] = useState({inputVal: "", error: false});
 
   let navigate = useNavigate();
   const goToCheckoutPayment = (e) => {
@@ -99,19 +99,23 @@ function CheckoutShipping() {
   };
 
   const setAddressInputHelper = (e) => {
-    setAddressInput(e.target.value);
+    addressInput.inputVal = e.target.value;
+    setAddressInput({...addressInput});
   };
 
   const setCityInputHelper = (e) => {
-    setCityInput(e.target.value);
+    cityInput.inputVal = e.target.value;
+    setCityInput({...cityInput});
   };
 
   const setStateInputHelper = (e) => {
-    setStateInput(e.target.value);
+    stateInput.inputVal = e.target.value;
+    setStateInput({...stateInput});
   };
 
   const setZipcodeInputHelper = (e) => {
-    setZipcodeInput(e.target.value);
+    zipcodeInput.inputVal = e.target.value;
+    setZipcodeInput({...zipcodeInput});
   };
 
   let shippingInput = shippingOptions.find(
@@ -126,13 +130,38 @@ function CheckoutShipping() {
       firstNameInput.error = true;
       setFirstNameInput({...firstNameInput});
       valid = false;
-    }
+    } 
     if (!lastNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
       console.log("does not match")
       lastNameInput.error = true;
       setLastNameInput({...lastNameInput});
       valid = false;
     }
+    if (addressInput.inputVal.match(/[!@$%^&*,?":{}|<>]/)) {
+      console.log("does not match")
+      addressInput.error = true;
+      setAddressInput({...addressInput});
+      valid = false;
+    }
+    if (!cityInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
+      console.log("does not match")
+      cityInput.error = true;
+      setCityInput({...cityInput});
+      valid = false;
+    }
+    if (!stateInput.inputVal.match(/^[a-z]{2}$/i)) {
+      console.log("does not match")
+      stateInput.error = true;
+      setStateInput({...stateInput});
+      valid = false;
+    }
+    if (!zipcodeInput.inputVal.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/)) {
+      console.log("does not match")
+      zipcodeInput.error = true;
+      setZipcodeInput({...zipcodeInput});
+      valid = false;
+    }
+
 
     return valid;
     
@@ -171,6 +200,7 @@ function CheckoutShipping() {
             labelName="Address"
             width="323px"
             setInput={setAddressInputHelper}
+            error={addressInput.error}
           />
 
           <div className="address-details">
@@ -178,16 +208,19 @@ function CheckoutShipping() {
               labelName="City"
               width="132px"
               setInput={setCityInputHelper}
+              error={cityInput.error}
             />
             <FormField
               labelName="State"
               width="47px"
               setInput={setStateInputHelper}
+              error={stateInput.error}
             />
             <FormField
               labelName="Zipcode"
               width="99px"
               setInput={setZipcodeInputHelper}
+              error={zipcodeInput.error}
             />
           </div>
 
