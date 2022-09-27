@@ -118,7 +118,7 @@ function CheckoutReview() {
           </div>
           <div className="credit-exp-date">
             <p>
-              {paymentInputs.expDateInput ? paymentInputs.expDateInput : ""}{" "}
+              {paymentInputs.expDateInput.inputVal ? paymentInputs.expDateInput.inputVal : ""}{" "}
             </p>
           </div>
         </div>
