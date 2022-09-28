@@ -54,13 +54,13 @@ function CheckoutReview() {
   };
 
   const order = {
-    email: shippingInputs.emailInput,
-    firstName: shippingInputs.firstNameInput,
-    lastName: shippingInputs.lastNameInput,
-    address: shippingInputs.addressInput,
-    city: shippingInputs.cityInput,
-    state: shippingInputs.stateInput,
-    zipcode: shippingInputs.zipcodeInput,
+    email: shippingInputs.emailInput.inputVal,
+    firstName: shippingInputs.firstNameInput.inputVal,
+    lastName: shippingInputs.lastNameInput.inputVal,
+    address: shippingInputs.addressInput.inputVal,
+    city: shippingInputs.cityInput.inputVal,
+    state: shippingInputs.stateInput.inputVal,
+    zipcode: shippingInputs.zipcodeInput.inputVal,
     deliveryOption: shippingInputs.shippingInput.name,
     payment: paymentInputs.paymentMethodInput,
     orderItems: getOrderItemDetails(),
@@ -113,14 +113,29 @@ function CheckoutReview() {
             </Link>
           </div>
           <div className="card-number">
-            <CardIcon className="card-icon" fill="var(--grey500)"/>            
+            <CardIcon className="card-icon" fill="var(--grey500)" />
             <p>**** {displayPayment()}</p>
           </div>
           <div className="credit-exp-date">
             <p>
-              {paymentInputs.expDateInput.inputVal ? paymentInputs.expDateInput.inputVal : ""}{" "}
+              {paymentInputs.expDateInput.inputVal
+                ? paymentInputs.expDateInput.inputVal
+                : ""}{" "}
             </p>
           </div>
+          {paymentInputs.addressInput.inputVal ? (
+            <div className="billing-address">
+              <h5>Billing Address</h5>
+              <p>{paymentInputs.addressInput.inputVal} </p>
+              <p>
+                {paymentInputs.cityInput.inputVal},{" "}
+                {paymentInputs.stateInput.inputVal}{" "}
+                {paymentInputs.zipcodeInput.inputVal}{" "}
+              </p>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
 
@@ -134,11 +149,13 @@ function CheckoutReview() {
           </div>
           <div className="shipping-address">
             <p>
-              {shippingInputs.firstNameInput.inputVal} {shippingInputs.lastNameInput.inputVal}{" "}
+              {shippingInputs.firstNameInput.inputVal}{" "}
+              {shippingInputs.lastNameInput.inputVal}{" "}
             </p>
             <p>{shippingInputs.addressInput.inputVal} </p>
             <p>
-              {shippingInputs.cityInput.inputVal}, {shippingInputs.stateInput.inputVal}{" "}
+              {shippingInputs.cityInput.inputVal},{" "}
+              {shippingInputs.stateInput.inputVal}{" "}
               {shippingInputs.zipcodeInput.inputVal}{" "}
             </p>
           </div>

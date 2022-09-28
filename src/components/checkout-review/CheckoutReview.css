@@ -118,6 +118,18 @@
   margin-top: 20px;
 }
 
+.payment-info .billing-address {
+  margin-top: 20px;
+}
+
+.payment-info .billing-address h5{
+  font-size: 1rem;
+  color: var(--grey500);
+  font-weight: var(--medium);
+  margin-bottom: 10px;
+}
+
+
 .checkout-review .shipping-address-box {
   box-sizing: border-box;
   width: 335px;
