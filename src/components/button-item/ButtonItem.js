@@ -12,7 +12,7 @@ class ButtonItem extends Component {
             backgroundColor: this.props.backgroundColor,
           }}
           disabled={this.props.disabled}
-          form={this.props.form ? this.props.form : ""}
+          form={this.props.form ? this.props.form : null}
         >
           {this.props.text}
         </button>

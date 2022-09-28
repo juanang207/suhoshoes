@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { ReactComponent as CardIcon } from "../../images/security-card.svg";
 import ButtonItem from "../button-item/ButtonItem";
 import CheckoutTabs from "../checkout-tabs/CheckoutTabs";
 import "./CheckoutReview.css";
@@ -14,8 +15,7 @@ function CheckoutReview() {
   const location = useLocation();
   console.log(location.state);
 
-  const {shippingInputs, paymentInputs} = location.state;
-
+  const { shippingInputs, paymentInputs } = location.state;
 
   let bagItems = JSON.parse(localStorage.getItem("bagItems"));
   let subtotal = JSON.parse(localStorage.getItem("subtotal"));
@@ -54,15 +54,15 @@ function CheckoutReview() {
   };
 
   const order = {
-    email: shippingInputs.emailInput,
-    firstName: shippingInputs.firstNameInput,
-    lastName: shippingInputs.lastNameInput,
-    address: shippingInputs.addressInput,
-    city: shippingInputs.cityInput,
-    state: shippingInputs.stateInput,
-    zipcode: shippingInputs.zipcodeInput,
+    email: shippingInputs.emailInput.inputVal,
+    firstName: shippingInputs.firstNameInput.inputVal,
+    lastName: shippingInputs.lastNameInput.inputVal,
+    address: shippingInputs.addressInput.inputVal,
+    city: shippingInputs.cityInput.inputVal,
+    state: shippingInputs.stateInput.inputVal,
+    zipcode: shippingInputs.zipcodeInput.inputVal,
     deliveryOption: shippingInputs.shippingInput.name,
-    payment: "Credit Card",
+    payment: paymentInputs.paymentMethodInput,
     orderItems: getOrderItemDetails(),
   };
 
@@ -80,6 +80,14 @@ function CheckoutReview() {
     );
 
     goToCheckoutConfirmation();
+  };
+
+  const displayPayment = () => {
+    if (paymentInputs.paymentMethodInput === "Credit Card") {
+      return paymentInputs.cardNumberInput.inputVal.slice(-4);
+    } else if (paymentInputs.paymentMethodInput === "Gift Card") {
+      return paymentInputs.giftCardNumberInput.inputVal.slice(-4);
+    }
   };
 
   return (
@@ -105,12 +113,29 @@ function CheckoutReview() {
             </Link>
           </div>
           <div className="card-number">
-            <img src={require(`../../images/visa.png`)} alt={`visa`} />
-            <p>**** {paymentInputs.cardNumberInput.slice(-4)}</p>
+            <CardIcon className="card-icon" fill="var(--grey500)" />
+            <p>**** {displayPayment()}</p>
           </div>
           <div className="credit-exp-date">
-            <p>{paymentInputs.expDateInput} </p>
+            <p>
+              {paymentInputs.expDateInput.inputVal
+                ? paymentInputs.expDateInput.inputVal
+                : ""}{" "}
+            </p>
           </div>
+          {paymentInputs.addressInput.inputVal ? (
+            <div className="billing-address">
+              <h5>Billing Address</h5>
+              <p>{paymentInputs.addressInput.inputVal} </p>
+              <p>
+                {paymentInputs.cityInput.inputVal},{" "}
+                {paymentInputs.stateInput.inputVal}{" "}
+                {paymentInputs.zipcodeInput.inputVal}{" "}
+              </p>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
 
@@ -123,9 +148,16 @@ function CheckoutReview() {
             </Link>
           </div>
           <div className="shipping-address">
-            <p>{shippingInputs.firstNameInput} {shippingInputs.lastNameInput} </p>
-            <p>{shippingInputs.addressInput} </p>
-            <p>{shippingInputs.cityInput}, {shippingInputs.stateInput} {shippingInputs.zipcodeInput} </p>
+            <p>
+              {shippingInputs.firstNameInput.inputVal}{" "}
+              {shippingInputs.lastNameInput.inputVal}{" "}
+            </p>
+            <p>{shippingInputs.addressInput.inputVal} </p>
+            <p>
+              {shippingInputs.cityInput.inputVal},{" "}
+              {shippingInputs.stateInput.inputVal}{" "}
+              {shippingInputs.zipcodeInput.inputVal}{" "}
+            </p>
           </div>
         </div>
       </div>
