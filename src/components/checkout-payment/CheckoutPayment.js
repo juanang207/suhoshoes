@@ -33,6 +33,17 @@ function CheckoutPayment() {
     error: false,
   });
 
+  const [addressInput, setAddressInput] = useState({
+    inputVal: "",
+    error: false,
+  });
+  const [cityInput, setCityInput] = useState({ inputVal: "", error: false });
+  const [stateInput, setStateInput] = useState({ inputVal: "", error: false });
+  const [zipcodeInput, setZipcodeInput] = useState({
+    inputVal: "",
+    error: false,
+  });
+
   // get state from previous page (shipping)
   const location = useLocation();
   const shippingInputs = location.state.shippingInputs;
@@ -52,6 +63,10 @@ function CheckoutPayment() {
               securityCodeInput,
               paymentMethodInput: paymentMethodInput.name,
               giftCardNumberInput,
+              addressInput,
+              cityInput,
+              stateInput,
+              zipcodeInput
             },
           },
         })
@@ -171,6 +186,54 @@ function CheckoutPayment() {
     }
   };
 
+  const setAddressInputHelper = (e) => {
+    addressInput.inputVal = e.target.value;
+    setAddressInput({ ...addressInput });
+
+    if (addressInput.error) {
+      if (!addressInput.inputVal.match(/[!@$%^&*,?":{}|<>]/)) {
+        addressInput.error = false;
+        setAddressInput({ ...addressInput });
+      }
+    }
+  };
+
+  const setCityInputHelper = (e) => {
+    cityInput.inputVal = e.target.value;
+    setCityInput({ ...cityInput });
+
+    if (cityInput.error) {
+      if (cityInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
+        cityInput.error = false;
+        setCityInput({ ...cityInput });
+      }
+    }
+  };
+
+  const setStateInputHelper = (e) => {
+    stateInput.inputVal = e.target.value;
+    setStateInput({ ...stateInput });
+
+    if (stateInput.error) {
+      if (stateInput.inputVal.match(/^[a-z]{2}$/i)) {
+        stateInput.error = false;
+        setStateInput({ ...stateInput });
+      }
+    }
+  };
+
+  const setZipcodeInputHelper = (e) => {
+    zipcodeInput.inputVal = e.target.value;
+    setZipcodeInput({ ...zipcodeInput });
+
+    if (zipcodeInput.error) {
+      if (zipcodeInput.inputVal.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/)) {
+        zipcodeInput.error = false;
+        setZipcodeInput({ ...zipcodeInput });
+      }
+    }
+  };
+
   let paymentMethodInput = paymentOptions.find(
     (option) => option.isSelected === true
   );
@@ -195,7 +258,9 @@ function CheckoutPayment() {
         valid = false;
       }
 
-      if (!expDateInput.inputVal.match(/^(0[1-9]|1[0-2])\/([1|2][0-9])\d{2}$/)) {
+      if (
+        !expDateInput.inputVal.match(/^(0[1-9]|1[0-2])\/([1|2][0-9])\d{2}$/)
+      ) {
         console.log("does not match");
         expDateInput.error = true;
         setExpDateInput({ ...expDateInput });
@@ -207,6 +272,33 @@ function CheckoutPayment() {
         securityCodeInput.error = true;
         setSecurityCodeInput({ ...securityCodeInput });
         valid = false;
+      }
+
+      if (!billingCheck) {
+        if (addressInput.inputVal.match(/[!@$%^&*,?":{}|<>]/)) {
+          console.log("does not match");
+          addressInput.error = true;
+          setAddressInput({ ...addressInput });
+          valid = false;
+        }
+        if (!cityInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
+          console.log("does not match");
+          cityInput.error = true;
+          setCityInput({ ...cityInput });
+          valid = false;
+        }
+        if (!stateInput.inputVal.match(/^[a-z]{2}$/i)) {
+          console.log("does not match");
+          stateInput.error = true;
+          setStateInput({ ...stateInput });
+          valid = false;
+        }
+        if (!zipcodeInput.inputVal.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/)) {
+          console.log("does not match");
+          zipcodeInput.error = true;
+          setZipcodeInput({ ...zipcodeInput });
+          valid = false;
+        }
       }
     } else if (paymentMethodInput.name === "Gift Card") {
       if (!giftCardNumberInput.inputVal.match(/^\d+$/)) {
@@ -285,11 +377,32 @@ function CheckoutPayment() {
                 {!billingCheck && (
                   <>
                     <h3>Billing Address</h3>
-                    <FormField labelName="Address" width="323px" />
+                    <FormField
+                      labelName="Address"
+                      width="323px"
+                      setInput={setAddressInputHelper}
+                      error={addressInput.error}
+                    />
                     <div className="address-details">
-                      <FormField labelName="City" width="132px" />
-                      <FormField labelName="State" width="47px" />
-                      <FormField labelName="Zipcode" width="99px" />
+                      <FormField
+                        labelName="City"
+                        width="132px"
+                        setInput={setCityInputHelper}
+                        error={cityInput.error}
+                      />
+                      <FormField
+                        labelName="State"
+                        width="47px"
+                        setInput={setStateInputHelper}
+                        error={stateInput.error}
+                        v
+                      />
+                      <FormField
+                        labelName="Zipcode"
+                        width="99px"
+                        setInput={setZipcodeInputHelper}
+                        error={zipcodeInput.error}
+                      />
                     </div>
                   </>
                 )}
