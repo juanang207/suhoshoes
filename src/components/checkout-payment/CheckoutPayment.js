@@ -28,7 +28,10 @@ function CheckoutPayment() {
     inputVal: -1,
     error: false,
   });
-  const [giftCardNumberInput, setGiftCardNumberInput] = useState(-1);
+  const [giftCardNumberInput, setGiftCardNumberInput] = useState({
+    inputVal: -1,
+    error: false,
+  });
 
   // get state from previous page (shipping)
   const location = useLocation();
@@ -137,7 +140,7 @@ function CheckoutPayment() {
     setExpDateInput({ ...expDateInput });
 
     if (expDateInput.error) {
-      if (expDateInput.inputVal.match(/^(0[1-9]|1[0-2])\/(19|20)\d{2}$/)) {
+      if (expDateInput.inputVal.match(/^(0[1-9]|1[0-2])\/([1|2][0-9])\d{2}$/)) {
         expDateInput.error = false;
         setExpDateInput({ ...expDateInput });
       }
@@ -157,7 +160,15 @@ function CheckoutPayment() {
   };
 
   const setGiftCardNumberInputHelper = (e) => {
-    setGiftCardNumberInput(e.target.value);
+    giftCardNumberInput.inputVal = e.target.value;
+    setGiftCardNumberInput({ ...giftCardNumberInput });
+
+    if (giftCardNumberInput.error) {
+      if (giftCardNumberInput.inputVal.match(/^\d+$/)) {
+        giftCardNumberInput.error = false;
+        setGiftCardNumberInput({ ...giftCardNumberInput });
+      }
+    }
   };
 
   let paymentMethodInput = paymentOptions.find(
@@ -166,32 +177,44 @@ function CheckoutPayment() {
 
   const handleValidation = () => {
     let valid = true;
-    if (!cardNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
-      console.log("does not match");
-      cardNameInput.error = true;
-      setCardNameInput({ ...cardNameInput });
-      valid = false;
-    }
 
-    if (!cardNumberInput.inputVal.match(/^\d+$/)) {
-      console.log("does not match");
-      cardNumberInput.error = true;
-      setCardNumberInput({ ...cardNumberInput });
-      valid = false;
-    }
+    console.log(paymentMethodInput);
 
-    if (!expDateInput.inputVal.match(/^(0[1-9]|1[0-2])\/(19|20)\d{2}$/)) {
-      console.log("does not match");
-      expDateInput.error = true;
-      setExpDateInput({ ...expDateInput });
-      valid = false;
-    }
+    if (paymentMethodInput.name === "Credit Card") {
+      if (!cardNameInput.inputVal.match(/^[a-z ,.'-]+$/i)) {
+        console.log("does not match");
+        cardNameInput.error = true;
+        setCardNameInput({ ...cardNameInput });
+        valid = false;
+      }
 
-    if (!securityCodeInput.inputVal.match(/^\d{3,4}$/)) {
-      console.log("does not match");
-      securityCodeInput.error = true;
-      setSecurityCodeInput({ ...securityCodeInput });
-      valid = false;
+      if (!cardNumberInput.inputVal.match(/^\d+$/)) {
+        console.log("does not match");
+        cardNumberInput.error = true;
+        setCardNumberInput({ ...cardNumberInput });
+        valid = false;
+      }
+
+      if (!expDateInput.inputVal.match(/^(0[1-9]|1[0-2])\/([1|2][0-9])\d{2}$/)) {
+        console.log("does not match");
+        expDateInput.error = true;
+        setExpDateInput({ ...expDateInput });
+        valid = false;
+      }
+
+      if (!securityCodeInput.inputVal.match(/^\d{3,4}$/)) {
+        console.log("does not match");
+        securityCodeInput.error = true;
+        setSecurityCodeInput({ ...securityCodeInput });
+        valid = false;
+      }
+    } else if (paymentMethodInput.name === "Gift Card") {
+      if (!giftCardNumberInput.inputVal.match(/^\d+$/)) {
+        console.log("does not match");
+        giftCardNumberInput.error = true;
+        setGiftCardNumberInput({ ...giftCardNumberInput });
+        valid = false;
+      }
     }
 
     return valid;
@@ -280,6 +303,7 @@ function CheckoutPayment() {
                 labelName="Gift Card Number"
                 width="323px"
                 setInput={setGiftCardNumberInputHelper}
+                error={giftCardNumberInput.error}
               />
             </div>
           )}
