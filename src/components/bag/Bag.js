@@ -47,7 +47,7 @@ function Bag(props) {
 
     const changeSelection = (quantity) => {
       // update the qty in local storage
-      let objIndex = bagItems.findIndex((obj) => obj.id === shoe.id);
+      let objIndex = bagItems.findIndex((obj) => obj.id === shoe.id && obj.size === shoe.size);
       bagItems[objIndex].qty = quantity.value;
 
       localStorage.setItem("bagItems", JSON.stringify(bagItems));
