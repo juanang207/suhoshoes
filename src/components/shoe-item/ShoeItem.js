@@ -259,7 +259,7 @@ function ShoeItem(props) {
 
           <div className="item-size">
             <h4>Size</h4>
-            <a href="#">Size Chart</a>
+            <a href="#size">Size Chart</a>
           </div>
 
           {/* Size Selection Buttons */}

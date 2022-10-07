@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Select from "react-select";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Close } from "../../images/close.svg";
 import InputField from "../input-field/InputField";
 import ButtonItem from "../button-item/ButtonItem";
