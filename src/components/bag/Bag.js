@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Select from "react-select";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Close } from "../../images/close.svg";
 import InputField from "../input-field/InputField";
 import ButtonItem from "../button-item/ButtonItem";
@@ -47,7 +47,7 @@ function Bag(props) {
 
     const changeSelection = (quantity) => {
       // update the qty in local storage
-      let objIndex = bagItems.findIndex((obj) => obj.id === shoe.id);
+      let objIndex = bagItems.findIndex((obj) => obj.id === shoe.id && obj.size === shoe.size);
       bagItems[objIndex].qty = quantity.value;
 
       localStorage.setItem("bagItems", JSON.stringify(bagItems));
